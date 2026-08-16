@@ -19,7 +19,7 @@ body {
     min-width: 320px;
     color: var(--ink);
     font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-    background: #e9e7e0 url("/images/body_backgraudimage.png") center top / cover fixed;
+    background: #e9e7e0 url("images/body_backgraudimage.png") center top / cover fixed;
     vertical-align: bottom;
 }
 
@@ -49,7 +49,7 @@ header {
     position: relative;
     z-index: 3;
     height: 62px;
-    background: url("/images/headerimage.png") center / cover no-repeat;
+    background: url("images/headerimage.png") center / cover no-repeat;
 }
 
 header h1 {
@@ -190,7 +190,7 @@ section {
     padding-top: 47px;
     color: #fff;
     text-align: center;
-    background: url("/images/about_backimage.png") center / cover no-repeat;
+    background: url("images/about_backimage.png") center / cover no-repeat;
 }
 
 #about h2,
@@ -258,7 +258,7 @@ button,
 #story {
     height: 811px;
     padding: 46px 0 0 30px;
-    background: url("/images/story_backimage.png") center / cover no-repeat;
+    background: url("images/story_backimage.png") center / cover no-repeat;
 }
 
 #story h2 {
@@ -292,7 +292,7 @@ button,
     height: 737px;
     padding: 43px 16px 0;
     color: #111;
-    background: url("/images/mobilites_backimage.png") center / cover no-repeat;
+    background: url("images/mobilites_backimage.png") center / cover no-repeat;
 }
 
 #stamp h2 {
@@ -381,7 +381,7 @@ button,
     height: 496px;
     padding-top: 21px;
     text-align: center;
-    background: url("/images/map_backimage.png") center / cover no-repeat;
+    background: url("images/map_backimage.png") center / cover no-repeat;
 }
 
 #map h2 {
