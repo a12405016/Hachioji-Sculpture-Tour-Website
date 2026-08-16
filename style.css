@@ -1,0 +1,479 @@
+@charset "UTF-8";
+
+:root {
+    --content-width: 402px;
+    --ink: #1a1a1a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-width: 320px;
+    color: var(--ink);
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    background: #e9e7e0 url("/images/body_backgraudimage.png") center top / cover fixed;
+    vertical-align: bottom;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    font: inherit;
+}
+
+main {
+    width: min(100%, var(--content-width));
+    margin: 0 auto;
+    overflow: hidden;
+    background: #fff;
+}
+
+
+/* header / hero */
+header {
+    position: relative;
+    z-index: 3;
+    height: 62px;
+    background: url("/images/headerimage.png") center / cover no-repeat;
+}
+
+header h1 {
+    width: 100%;
+}
+
+header h1 img {
+    width: 100%;
+}
+
+
+/* ナビゲーションメニュー - デスクトップ表示 */
+.nav-menu {
+    position: fixed;
+    right: clamp(10px, 5vw, 30px);
+    top: 25%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+}
+
+.nav-menu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: clamp(100px, 20vw, 303px);
+}
+
+.nav-menu a {
+    display: block;
+    padding: 12px 30px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: #4a4a4a;
+    border-radius: 25px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.nav-menu a:hover {
+    background-color: #333;
+    scale: 1.05;
+    transition: scale 0.3s;
+}
+
+/* 706px以下のメディアクエリ */
+@media (max-width: 706px) {
+    .nav-menu {
+        display: none;
+    }
+}
+
+#header {
+    position: relative;
+    height: 852px;
+    background: #f3eee3;
+}
+
+#header>p img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    vertical-align: bottom;
+}
+
+#header>div {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.herocontent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 450px;
+    left: 0;
+    width: 100%;
+}
+
+#header>div>p:first-child {
+    flex: 0 0 auto;
+}
+
+#header>div>p:first-child img {
+    width: 249px;
+    margin: 0;
+    transform: translateX(-40px);
+}
+
+#header>div>div {
+    width: 230px;
+    transform: translateX(-60px);
+    display: flex;
+    flex-direction: column;
+    align-items: bottom;
+    gap: 7px;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+#header>div>div img {
+    width: 72px;
+}
+
+#header>div>div p {
+    font-size: 40px;
+}
+
+#header>div>div span {
+    font-size: 96px;
+}
+
+section {
+    position: relative;
+}
+
+.section-margin {
+    height: 30px;
+    background: #ddd;
+}
+
+.section-margin img {
+    width: 100%;
+    height: 30px;
+}
+
+
+
+/* about */
+#about {
+    height: 824px;
+    padding-top: 47px;
+    color: #fff;
+    text-align: center;
+    background: url("/images/about_backimage.png") center / cover no-repeat;
+}
+
+#about h2,
+#story h2,
+#stamp h2,
+#map h2 {
+    font: 700 19px/1 Arial, sans-serif;
+    letter-spacing: -.5px;
+}
+
+#about>p:first-of-type {
+    margin-top: 25px;
+    font-size: 13px;
+}
+
+#about>div {
+    margin: 91px auto 0;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+    line-height: 1.05;
+}
+
+#about>div p:first-child {
+    font-size: 18px;
+}
+
+#about>div p:nth-child(2) {
+    margin: 8px 0;
+    font-size: 17px;
+}
+
+#about>div p:last-child {
+    font-size: 16px;
+}
+
+#about>p:nth-of-type(2) {
+    margin-top: 124px;
+    font-size: 12px;
+    line-height: 2;
+}
+
+.section-margin+#story {
+    margin-top: 0;
+}
+
+button,
+#about button,
+#map button,
+#stamp button {
+    min-width: 140px;
+    padding: 5px 13px;
+    border: 0;
+    border-radius: 12px;
+    color: #fff;
+    background: #181818;
+    font-size: 8px;
+    font-weight: 700;
+}
+
+#about>p:last-child {
+    margin-top: 38px;
+}
+
+/* story */
+#story {
+    height: 811px;
+    padding: 46px 0 0 30px;
+    background: url("/images/story_backimage.png") center / cover no-repeat;
+}
+
+#story h2 {
+    font-size: 18px;
+}
+
+#story>p {
+    position: absolute;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-weight: 700;
+}
+
+#story>p:first-of-type {
+    top: 182px;
+    right: 35px;
+    font-size: 31px;
+    writing-mode: vertical-rl;
+}
+
+#story>p:last-child {
+    top: 231px;
+    right: 92px;
+    font-size: 56px;
+    line-height: 1;
+    writing-mode: vertical-rl;
+    letter-spacing: 8px;
+}
+
+/* stamp */
+#stamp {
+    height: 737px;
+    padding: 43px 16px 0;
+    color: #111;
+    background: url("/images/mobilites_backimage.png") center / cover no-repeat;
+}
+
+#stamp h2 {
+    color: #fff;
+    font-size: 17px;
+}
+
+#stamp>div:first-of-type {
+    margin-top: 40px;
+    font-family: Arial, sans-serif;
+    font-weight: 800;
+    line-height: .95;
+}
+
+#stamp>div:first-of-type p:first-child {
+    color: #d8202c;
+    font-size: 18px;
+}
+
+#stamp>div:first-of-type p:nth-child(2) {
+    font-size: 18px;
+}
+
+#stamp>div:first-of-type p:last-child {
+    font-size: 12px;
+}
+
+#stamp>div:nth-of-type(2) {
+    margin-top: 21px;
+}
+
+#stamp ul {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+#stamp li:first-child {
+    flex: 0 0 155px;
+}
+
+#stamp li:first-child img {
+    width: 155px;
+    border: 4px solid #fff;
+}
+
+#stamp li:first-child p,
+#stamp li:last-child p:last-child {
+    margin-top: 3px;
+    font-size: 5px;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+#stamp li:last-child {
+    padding-top: 1px;
+    font-size: 9px;
+    line-height: 1.65;
+}
+
+#stamp li:last-child p:first-child {
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+#stamp a {
+    color: inherit;
+}
+
+#stamp>p:last-child {
+    margin-top: 55px;
+    text-align: center;
+}
+
+#stamp button {
+    min-width: 136px;
+}
+
+#stamp button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* map */
+#map {
+    height: 496px;
+    padding-top: 21px;
+    text-align: center;
+    background: url("/images/map_backimage.png") center / cover no-repeat;
+}
+
+#map h2 {
+    text-align: left;
+    padding-left: 14px;
+    font-size: 16px;
+}
+
+#map>p:nth-of-type(1) {
+    margin-top: -20px;
+    margin-right: 28px;
+    text-align: right;
+    font: 700 18px/1 "Hiragino Mincho ProN", serif;
+}
+
+#map>p:nth-of-type(2) {
+    margin-top: 0;
+    margin-right: 28px;
+    text-align: right;
+    font-size: 8px;
+}
+
+#map>div {
+    margin: 35px auto 0;
+    width: 369px;
+    height: 223px;
+    overflow: hidden;
+}
+
+#map>div img {
+    width: 369px;
+}
+
+#map>p:last-child {
+    margin-top: 11px;
+}
+
+/* notice / footer */
+#notice {
+    min-height: 390px;
+    padding: 26px 20px 20px;
+    color: #fff;
+    background: #414141;
+}
+
+#notice h3 {
+    margin-bottom: 14px;
+    text-align: center;
+    font-size: 17px;
+}
+
+#notice li {
+    font-size: 7px;
+    line-height: 1.55;
+}
+
+#notice br {
+    display: block;
+    height: 8px;
+    content: "";
+}
+
+footer {
+    padding: 15px 20px 22px;
+    text-align: center;
+    background: #f6f4f1;
+}
+
+footer p {
+    min-height: 31px;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 7px;
+}
+
+footer p:last-child {
+    margin-top: 14px;
+    border-bottom: 0;
+    color: #777;
+    font-size: 6px;
+}
+
+footer img {
+    display: inline-block;
+    max-width: 18px;
+    max-height: 18px;
+    margin-right: 7px;
+    vertical-align: middle;
+}
+
+@media (min-width: 403px) {
+    main {
+        box-shadow: 0 0 18px rgba(0, 0, 0, .16);
+    }
+}
