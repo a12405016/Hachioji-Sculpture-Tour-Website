@@ -787,9 +787,9 @@ footer img {
 }
 
 .sc-2 {
-    top: 35%;
+    top: 38%;
     left: 3%;
-    width: 22vw;
+    width: 25vw;
     z-index: 2;
 }
 
@@ -800,9 +800,9 @@ footer img {
 }
 
 .sc-4 {
-    top: 50%;
+    top: 58%;
     right: 7%;
-    width: 25vw;
+    width: 26vw;
 }
 
 .sc-5 {
@@ -818,13 +818,13 @@ footer img {
 }
 
 .sc-6 {
-    top: 63%;
+    top: 69%;
     left: -10%;
-    width: 50vw;
+    width: 48vw;
 }
 
 .sc-7 {
-    top: 45%;
+    top: 51%;
     right: 35%;
     width: 70vw;
     z-index: 3;
@@ -857,17 +857,17 @@ footer img {
 }
 
 .stamp-bg {
-    top: 35%;
+    top: 38%;
     left: 0;
-    width: 27vw;
+    width: 30vw;
     /* スタンプ背景も画面幅いっぱいに広げる */
     z-index: -1;
 }
 
 .about-bg {
-    top: 50%;
+    top: 57%;
     right: 0%;
-    width: 34vw;
+    width: 36vw;
     /* ABOUT背景も画面幅いっぱいに広げる */
     z-index: -1;
 }
