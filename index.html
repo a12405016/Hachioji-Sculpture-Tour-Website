@@ -20,11 +20,39 @@
     <meta property="og:image" content="images/herofavicon.png">
     <title>八王子市彫刻巡りスタンプラリー公式サイト</title>
     <meta name="robots" content="noindex"><!-- /*Google検索に表示させない公開時は消します。*/ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tsukimi+Rounded:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/herofavicon.png">
 </head>
 
 <body>
+    <div id="loading-screen">
+        <div class="loading-inner">
+            <img src="images/herofavicon.png" width="64" height="auto" alt="" class="loading-icon">
+            <p class="loading-title">八王子彫刻巡りスタンプラリー</p>
+            <div class="loading-bar-wrap">
+                <div class="loading-bar" id="loadingBar"></div>
+            </div>
+            <p class="loading-percent" id="loadingPercent">0<span>%</span></p>
+        </div>
+    </div>
+    <script>
+        (function () {
+            if (sessionStorage.getItem('sculptureLoadingShown') === 'true') {
+                document.getElementById('loading-screen').style.display = 'none';
+            }
+        })();
+    </script>
+
     <nav class="nav-menu" id="navMenu">
         <ul>
             <li><a href="#header0">TOP</a></li>
@@ -32,6 +60,7 @@
             <li><a href="#story">STORY</a></li>
             <li><a href="#stamp">STAMP</a></li>
             <li><a href="#map">MAP</a></li>
+            <li><a href="#archive">ARCHIVE</a></li>
             <li><a href="#notice">NOTICE</a></li>
         </ul>
     </nav>
@@ -45,26 +74,52 @@
             <div class="herocontent">
                 <p><img src="images/heroimage2.png" width="249px" height="auto" alt="八王子市彫刻巡りスタンプラリー"></p>
                 <div class="herotext">
-                    <p><img src="images/herofavicon.png" width="72px" height="auto" alt="八王子市彫刻巡りスタンプラリーアイコン"></p>
-                    <p><span>8</span>月下旬<br>より開始</p>
+                    <p>
+                        <img src="images/herofavicon.png" width="72px" height="auto" alt="八王子市彫刻巡りスタンプラリーアイコン">
+                    </p>
+                    <p><span>9</span>月<span>28</span>日〜<br><span>12</span>月<span>28</span>日</p>
+                </div>
+            </div>
+            <div class="scroll-down-wrapper">
+                <div class="scroll-arrow arrow-1">
+                    <img src="images/scroll-down-icon.png" alt="下矢印">
+                </div>
+                <div class="scroll-arrow arrow-2">
+                    <img src="images/scroll-down-icon.png" alt="下矢印">
+                </div>
+                <div class="scroll-arrow arrow-3">
+                    <img src="images/scroll-down-icon.png" alt="下矢印">
                 </div>
             </div>
         </section>
 
         <section id="about">
             <h2>ABOUT</h2>
-            <p>捌王子彫刻巡りとは…</p>
-            <div>
-                <p>YAMAHA</p>
-                <p>×</p>
-                <p>TOKYO ZOKEI<br>UNIVERSITY</p>
+            <div class="about-lead">
+                <p>八王子市彫刻巡り</p>
+                <p>スタンプラリーとは...</p>
             </div>
-            <p>
-                YAMAHA社と東京造形大学の<br>
-                産学提携で生まれた<br>
-                デジタルスタンプラリーです
-            </p>
-            <p><button>スタンプラリーをはじめる</button></p>
+
+            <!-- アイコン画像 -->
+            <div class="about-content">
+                <img src="images/aboutimages.png" width="190px" height="auto" alt="八王子市彫刻巡りスタンプラリーアイコン">
+            </div>
+
+            <div class="about-description">
+                <p>八王子の街に点在する「彫刻」</p>
+                <p>そこに秘められた「架空の物語」</p>
+                <p>を巡る体験型デジタルスタンプラリー</p>
+            </div>
+
+            <div class="about-partner">
+                <p class="partner-title">YAMAHA × TOKYO ZOKEI UNIVERSITY</p>
+                <hr class="partner-divider">
+                <p class="partner-text">位置情報アプリ「Mobilit.E.S」を活用した<br>産学連携プロジェクト</p>
+            </div>
+
+            <a href="html/selectarea.html" rel="noopener noreferrer" class="about-btn-link">
+                <button class="about-btn">スタンプラリーをはじめる</button>
+            </a>
         </section>
 
         <div class="section-margin">
@@ -73,8 +128,23 @@
 
         <section id="story">
             <h2>STORY</h2>
-            <p>異界</p>
-            <p>捌王子</p>
+            <div class="story-content">
+                <!-- 見出しエリア（異界・捌王子） -->
+                <div class="story-heading">
+                    <p class="story-sub">異界</p>
+                    <h3 class="story-main">
+                        <ruby>捌王子<rt>はちおうじ</rt></ruby>
+                    </h3>
+                </div>
+                <!-- 本文エリア -->
+                <div class="story-text">
+                    <p>　捌王子とは、我々の世界とは全く異なった</p>
+                    <p>歴史をたどった別の八王子です。しかしどういうわけか</p>
+                    <p>八王子と捌王子には同じ彫刻があるようです。</p>
+                    <p>我々は八王子の彫刻を通して捌王子の世界の歴史を</p>
+                    <p>体験していくこととなります。</p>
+                </div>
+            </div>
         </section>
 
         <div class="section-margin">
@@ -107,20 +177,88 @@
                     </li>
                 </ul>
             </div>
-            <p><button><a href="https://www.yamaha-motor.co.jp/mobilites/" target="_blank"
-                        rel="noopener noreferrer">モビリテス公式サイトへ</a></button></p>
+            <a href="https://www.yamaha-motor.co.jp/mobilites/" target="_blank" rel="noopener noreferrer"
+                class="stamp-btn">
+                モビリテス公式サイトへ
+            </a>
         </section>
 
         <section id="map">
-            <h2>MAP</h2>
-            <div class="maptitle">
-                <p>創世編</p>
-                <p>八王子駅ルート</p>
+            <!-- ヘッダー（タイトル ＆ 緑ラベル） -->
+            <div class="map-header">
+                <h2>MAP</h2>
+                <div class="maptitle">
+                    <p><span>捌王子</span>の<span>世界</span>をのぞいてみよう</p>
+                </div>
             </div>
-            <div>
-                <p><img src="images/mapimage.png" alt="スタンプラリーマップ"></p>
+
+            <!-- マップ画像 -->
+            <div class="map-image-wrap">
+                <img src="images/areamap.png" width="386px" height="auto" alt="スタンプラリーマップ">
             </div>
-            <p><button>スタンプラリーをはじめる</button></p>
+
+            <!-- ボタン -->
+            <div class="map-btn-wrap">
+                <a href="html/selectarea.html" rel="noopener noreferrer" class="map-btn">
+                    スタンプラリーをはじめる
+                </a>
+            </div>
+        </section>
+
+        <section id="archive">
+            <h2>ARCHIVE</h2>
+            <p class="archive-lead">
+                異界「捌王子」の記憶。<br>
+                巡ったエリアの物語と彫刻アーカイブが閲覧可能です。
+            </p>
+
+            <div class="archive-grid">
+                <!-- 解放済み（アクティブ）エリア -->
+                <a href="" class="archive-card active">
+                    <span class="sub-title">創世編</span>
+                    <span class="main-title">八王子駅エリア</span>
+                </a>
+
+                <!-- 未解放（グレーアウト）エリア -->
+                <div class="archive-card disabled">
+                    <span class="sub-title">創世編</span>
+                    <span class="main-title">西八王子エリア</span>
+                </div>
+                <div class="archive-card disabled">
+                    <span class="sub-title">創世編</span>
+                    <span class="main-title">北八王子エリア</span>
+                </div>
+                <div class="archive-card disabled">
+                    <span class="sub-title">創世編</span>
+                    <span class="main-title">八王子市役所エリア</span>
+                </div>
+                <div class="archive-card disabled">
+                    <span class="sub-title">創世編</span>
+                    <span class="main-title">片倉エリア</span>
+                </div>
+                <div class="archive-card disabled">
+                    <span class="sub-title">創世編</span>
+                    <span class="main-title">高尾エリア</span>
+                </div>
+                <div class="archive-card disabled">
+                    <span class="sub-title">創世編</span>
+                    <span class="main-title">北野エリア</span>
+                </div>
+                <div class="archive-card disabled">
+                    <span class="sub-title">創世編</span>
+                    <span class="main-title">多摩センターエリア</span>
+                </div>
+                <div class="archive-card disabled">
+                    <span class="sub-title">創世編</span>
+                    <span class="main-title">南大沢エリア</span>
+                </div>
+                <div class="archive-card disabled">
+                    <span class="sub-title">創世編</span>
+                    <span class="main-title">その他エリア</span>
+                </div>
+            </div>
+
+            <p class="archive-note">※各エリアでどれか1つの彫刻をめぐると解放されます。</p>
         </section>
 
         <section id="notice">
@@ -137,16 +275,41 @@
             </ul>
         </section>
 
+        <section id="survey">
+            <p class="survey-lead">＼1〜2分で終わります！／</p>
+            <div class="survey-btn-wrap">
+                <a href="https://forms.gle/QPABRrupiCg4Sjsz8" target="_blank" rel="noopener noreferrer"
+                    class="survey-btn">
+                    アンケートに回答する <span>＞</span>
+                </a>
+            </div>
+            <p class="survey-desc">
+                より良いスタンプラリーにするために<br>
+                みなさんのご意見をぜひお聞かせください！
+            </p>
+        </section>
+
 
         <footer>
-            <p><img src="images/instagram_icon.png" alt="Instagram">Instagram 公式アカウント</p>
-            <p><img src="images/x_icon.png" alt="X">X 公式アカウント</p>
-            <p><img src="images/tokyo_zokei_university_icon.png" alt="TOKYO ZOKEI UNIVERSITY">TOKYO ZOKEI UNIVERSITY</p>
-            <p><img src="images/yamaha_icon.png" alt="YAMAHA">YAMAHA</p>
-            <p><img src="images/hachioji_gakuen_toshi_consortium_icon.png" alt="八王子学園都市コンソーシアム">八王子学園都市コンソーシアム</p>
-
+            <p>八王子市彫刻巡りスタンプラリーSNS</p>
+            <div class="sns-icon">
+                <p><a href="https://www.instagram.com/hatchiojisculpturestamprally/?hl=ja" target="_blank"
+                        rel="noopener noreferrer"><img src="images/footer_insta_icon.png" alt="Instagram"></a>
+                </p>
+                <p><a href="https://x.com/hatchiojiscults" target="_blank" rel="noopener noreferrer"><img
+                            src="images/footer_x_icon.png" alt="X"></a></p>
+            </div>
+            <div class="footericon">
+                <a href="https://www.zokei.ac.jp/" target="_blank" rel="noopener noreferrer"><img
+                        src="images/footericon-tzu.png" width="219px" height="auto" alt="東京造形大学"></a>
+                <a href="https://www.yamaha-motor.co.jp/mobilites/" target="_blank" rel="noopener noreferrer"><img
+                        src="images/footericon-mobilites.png" width="219px" height="auto" alt="YAMAHAモビリテス"></a>
+                <a href="https://gakuen-hachioji.jp/project/kikakuhojo/" target="_blank" rel="noopener noreferrer"><img
+                        src="images/footericon-conso.png" width="219px" height="auto" alt="大学コンソーシアム八王子"></a>
+            </div>
             <p class="copyright">&copy; 2026 八王子市彫刻巡りスタンプラリー</p>
         </footer>
+
     </main>
 
     <!-- PC用背景装飾エリア（706px以下で非表示） -->
@@ -170,8 +333,10 @@
         <img src="images/sculpture_works07.png" alt="" class="decor-img sc-7">
         <img src="images/sculpture_works08.png" alt="" class="decor-img sc-8">
     </div>
-
+    <!-- トースト通知用要素 -->
+    <div id="toast" class="toast">未解放エリアです！</div>
 </body>
+
 <script src="js/script.js"></script>
 
 </html>

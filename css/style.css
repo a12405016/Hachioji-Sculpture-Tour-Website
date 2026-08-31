@@ -4,6 +4,8 @@
 :root {
     --content-width: 402px;
     --ink: #1a1a1a;
+    --white: #fff;
+    --mobileites: #0D8B80;
 }
 
 * {
@@ -89,11 +91,13 @@ header h1 img {
     pointer-events: none;
 }
 
-/* ナビゲーションメニュー - デスクトップ表示 */
+/* =========================================================
+    Nav
+========================================================= */
 .nav-menu {
     position: fixed;
     right: clamp(10px, 5vw, 30px);
-    top: 22%;
+    top: 25%;
     transform: translateY(-50%);
     z-index: 100;
     display: flex;
@@ -133,9 +137,11 @@ header h1 img {
     }
 }
 
+/* =========================================================
+    Header
+========================================================= */
 #header {
     position: relative;
-    /* 402pxの時に852px。それ以下ではアスペクト比を保って縮小し、下の空白を無くします */
     height: clamp(678px, 211.9vw, 852px);
     background: #f3eee3;
     overflow: hidden;
@@ -176,47 +182,187 @@ header h1 img {
     transform: translateX(clamp(-40px, -9.9vw, -30px));
 }
 
+/* 親要素（ヒーローエリア）が基準になるよう設定されているか確認してください */
+#hero,
+.hero,
+header {
+    position: relative;
+}
+
 .herotext {
-    /* 402pxでは230px。こちらも画面幅に合わせて縮小 */
-    width: clamp(183px, 57.2vw, 230px);
-    transform: translateX(clamp(-60px, -14.9vw, -45px));
+    /* 中央枠の「右下」を基準に配置して見切れを完全に防止 */
+    position: absolute;
+    right: 12px;
+    bottom: 30px;
+
     display: flex;
     flex-direction: column;
-    gap: 7px;
-    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    align-items: flex-end;
+    font-family: "Zen Old Mincho", serif;
     font-weight: 700;
-    line-height: 1.15;
+    line-height: 0.98;
+    z-index: 10;
 }
 
 .herotext p {
-    width: 100%;
+    font-size: 36px;
+    /* 文字サイズ（維持） */
+    line-height: 0.98;
+    margin: 0;
     text-align: right;
-    /* ★丸アイコンもテキストも右揃えになります！ */
+    white-space: nowrap;
+}
+
+.herotext span {
+    font-size: 64px;
+    /* 数字サイズ（維持） */
+}
+
+/* 右上の丸アイコン配置 */
+.herotext p:first-child {
+    width: 100%;
+    margin-bottom: -18px;
+    /* アイコンを日付テキストの右上に少し重ねる */
 }
 
 .herotext p:first-child img {
-    /* アイコン自体を右寄せに固定 */
     margin-left: auto;
-    /* 402pxでは72px */
-    width: clamp(57px, 17.9vw, 72px);
-    transform: translateY(70px) translateX(clamp(12px, 4.9vw, 15px));
+    width: 58px;
+    height: auto;
+    display: block;
 }
 
+/* 日付テキストの装飾 */
 .herotext p:last-child {
-    transform: translateY(20px);
-    font-size: clamp(31px, 9.9vw, 40px);
-    /* 402pxで40px */
-    width: 100% !important;
-    /* 親要素（.herotext）の幅いっぱいまで広げる */
-    white-space: nowrap;
-    /* brタグ以外の意図しない自動改行を完全に防ぐ */
+    margin: 0;
+    color: #ffffff;
+    -webkit-text-stroke: 1px #000000;
+    filter: drop-shadow(2px 3px 3px rgba(0, 0, 0, 0.4));
 }
 
-.herotext p:last-child span {
-    font-size: clamp(76px, 23.8vw, 96px);
-    /* 402pxで96px */
+
+/* 矢印をまとめるラッパーの配置 */
+.scroll-down-wrapper {
+    position: absolute;
+    bottom: 50px;
+    right: max(100px, 12vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 999;
 }
 
+/* 矢印同士の間隔設定（z-indexを有効化するため position: relative を追加） */
+.scroll-arrow {
+    position: relative;
+    margin-top: -16px;
+}
+
+.scroll-arrow:first-child {
+    margin-top: 0;
+}
+
+/* 【重要】上の矢印ほど手前に重なるよう z-index を設定 */
+.arrow-1 {
+    z-index: 3;
+}
+
+/* 一番上：最前面 */
+.arrow-2 {
+    z-index: 2;
+}
+
+/* 真ん中：中間 */
+.arrow-3 {
+    z-index: 1;
+}
+
+/* 一番下：最背面 */
+
+/* 矢印画像のアニメーション設定 */
+.arrow-1 img {
+    width: 36px;
+    height: auto;
+    animation: arrow-scroll-1 2.5s infinite ease-in-out;
+}
+
+.arrow-2 img {
+    width: 36px;
+    height: auto;
+    animation: arrow-scroll-2 2.5s infinite ease-in-out;
+}
+
+.arrow-3 img {
+    width: 36px;
+    height: auto;
+    animation: arrow-scroll-3 2.5s infinite ease-in-out;
+}
+
+/* 1番目（一番上）：最初に登場してとどまる */
+@keyframes arrow-scroll-1 {
+    0% {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    20%,
+    80% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}
+
+/* 2番目（真ん中）：1番目の下へ重ねるように出現してとどまる */
+@keyframes arrow-scroll-2 {
+
+    0%,
+    20% {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    40%,
+    80% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}
+
+/* 3番目（一番下）：2番目の下へ重ねるように出現し、最後全員で消える */
+@keyframes arrow-scroll-3 {
+
+    0%,
+    40% {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    60%,
+    80% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}
+
+
+/* =========================================================
+//    section
+//========================================================= */
 section {
     position: relative;
 }
@@ -233,169 +379,219 @@ section {
 
 
 
-
-
-/* about */
+/* =========================================================
+    about
+========================================================= */
 #about {
-    height: 824px;
-    padding-top: 47px;
+    min-height: 824px;
+    padding: 26px 0 55px;
     color: #fff;
     text-align: center;
     background: url("../images/about_backimage.png") center / cover no-repeat;
 }
 
-#about h2,
-#story h2,
-#stamp h2,
-#map h2 {
-    font: 700 19px/1 Arial, sans-serif;
-    letter-spacing: -.5px;
-}
-
-/* ABOUTのh2だけ特別に上書き（左寄せ・巨大化） */
 #about h2 {
-    font-size: 42px;
-    text-align: left;
-    padding-left: 20px;
-    /* 左側に少し余白を設ける */
-    letter-spacing: 2px;
-}
-
-#about>p:first-of-type {
-    margin-top: 15px;
-    font-size: 22px;
-    /* 13pxから大きく */
-    text-align: left;
-    /* 左寄せ */
-    padding-left: 20px;
-}
-
-#about>div {
-    margin: 91px auto 0;
-    font-family: Arial, sans-serif;
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-#about>div p:first-child {
     font-size: 36px;
-    /* 18pxから大きく */
+    font-weight: 900;
+    font-family: 'Inter', sans-serif;
+    text-align: left;
+    padding-left: 18px;
+    letter-spacing: 2px;
+    margin: 0;
+    font-weight: 900;
 }
 
-#about>div p:nth-child(2) {
-    margin: 15px 0;
-    font-size: 40px;
-    /* 17pxから大きく */
+/* リード文 */
+.about-lead {
+    text-align: left;
+    padding-left: 18px;
+    margin-top: 28px;
 }
 
-#about>div p:last-child {
-    font-size: 32px;
-    /* 16pxから大きく */
+.about-lead p {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.25;
+    margin: 0;
+    letter-spacing: 1px;
 }
 
-#about>p:nth-of-type(2) {
-    margin-top: 90px;
-    font-size: 20px;
-    /* 12pxから大きく */
+/* 画像コンテナ */
+.about-content {
+    margin: 50px auto 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-content img {
+    width: 190px;
+    margin: 0 auto;
+}
+
+/* 枠付き説明テキスト（ガラスエフェクト再現） */
+.about-description {
+    width: 270px;
+    margin: 0 auto 60px;
+    padding: 18px 8px;
+    border-radius: 11px;
+    border: 1px solid #939393;
+    box-sizing: border-box;
+    background: rgba(35, 33, 26, 0.35);
+    /* ガラスエフェクト（フロスト 4） */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    /* Safari用 */
+}
+
+.about-description p {
+    font-size: 13px;
+    font-weight: normal;
     line-height: 2;
+    margin: 0;
+    letter-spacing: 1px;
 }
 
-#about>p:last-child {
-    margin-top: 60px;
-    /* 38pxから少し余白を広げる */
+/* 産学連携クレジット */
+.about-partner {
+    margin-bottom: 18px;
+}
+
+.about-partner .partner-title {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.about-partner .partner-divider {
+    width: 80%;
+    max-width: 320px;
+    border: none;
+    border-top: 1px solid #fff;
+    margin: 8px auto;
+}
+
+.about-partner .partner-text {
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+/* ボタンのリンク要素（中央寄せ用） */
+.about-btn-link {
+    display: inline-block;
+    text-decoration: none;
 }
 
 /* ABOUTセクションのボタンだけグレー＆大きく上書き */
-#about button {
-    min-width: 280px;
-    margin-top: 20px;
-    padding: 16px 20px;
+#about button.about-btn {
+    min-width: 230px;
+    padding: 12px 16px;
     font-size: 16px;
+    font-weight: bold;
     background: #a0a0a0;
-    /* 画像に合わせたグレー */
-    border-radius: 10px;
-}
-
-.section-margin+#story {
-    margin-top: 0;
-}
-
-
-
-/* button */
-button,
-#map button,
-#stamp button {
-    min-width: 140px;
-    padding: 5px 13px;
-    border: 0;
-    border-radius: 12px;
     color: #fff;
-    background: #181818;
-    font-size: 8px;
-    font-weight: 700;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
 }
 
-#about>p:last-child {
-    margin-top: 38px;
+#about button.about-btn:hover {
+    background: #8c8c8c;
+    opacity: 0.85;
+    transform: translateY(-2px);
 }
 
-
-
-
-
-/* story */
+/* =========================================================
+    story
+========================================================= */
 #story {
-    height: 811px;
-    padding-top: 40px;
-    /* 余白を調整 */
+    position: relative;
+    min-height: 811px;
+    padding: 20px 20px;
     background: url("../images/story_backimage.png") center / cover no-repeat;
+    overflow: hidden;
 }
 
-/* STORYのh2を左寄せ・巨大化 */
+/* タイトル「STORY」 */
 #story h2 {
-    font-size: 42px;
-    /* ABOUTセクションとサイズ感を統一 */
-    text-align: left;
-    padding-left: 20px;
+    font-size: 36px;
+    font-weight: 900;
+    font-family: 'Inter', sans-serif;
     letter-spacing: 2px;
     color: #000;
+    margin: 0;
 }
 
-#story>p {
+/* 縦書きエリア全体 */
+.story-content {
     position: absolute;
+    top: 75px;
+    right: 20px;
+    writing-mode: vertical-rl;
     font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-    font-weight: 700;
     color: #000;
-    /* 文字色をしっかり黒に */
 }
 
-#story>p:first-of-type {
-    /* 「異界」の配置とサイズ */
-    top: 90px;
-    right: 8px;
-    font-size: 60px;
-    /* 31pxから拡大 */
-    writing-mode: vertical-rl;
+
+/* 「異界」 */
+.story-sub {
+    font-size: 50px;
+    font-weight: bold;
+    letter-spacing: 15px;
+    margin-top: 25px;
+    margin-right: -10px;
+}
+
+/* 「捌王子」 */
+.story-main {
+    font-size: 80px;
+    font-weight: bold;
     letter-spacing: 4px;
-}
-
-#story>p:last-child {
-    /* 「捌王子」の配置とサイズ */
-    top: 130px;
-    right: 100px;
-    font-size: clamp(56px, 14.9vw, 130px);
-    /* 56pxから大幅に拡大 */
+    margin-top: 60px;
+    /* カンプに合わせて少し拡大（異界より一段下げる） */
+    margin-right: -10px;
     line-height: 1;
-    writing-mode: vertical-rl;
-    letter-spacing: 25px;
-    /* 文字の間隔を広げる */
 }
 
+/* ルビ（ふりがな）の調整 */
+.story-main ruby rt {
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: 11px;
+}
 
+/* 本文エリア */
+.story-text {
+    margin-top: 60px;
+    margin-right: 20px;
+}
 
+.story-text p {
+    font-family: "Tsukimi Rounded", sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    margin: 0;
+    white-space: nowrap;
+}
 
-/* stamp */
+@media screen and (max-width: 360px) {
+    .story-text p {
+        font-size: 18px;
+    }
+
+    .story-text {
+        margin-right: 10px;
+    }
+}
+
+/* =========================================================
+    STAMP
+========================================================= */
 #stamp {
     min-height: 737px;
     /* height を min-height に変更し、中身が溢れたら自動で伸びるようにします */
@@ -407,7 +603,9 @@ button,
 
 /* タイトルを左寄せ・大きく */
 #stamp h2 {
-    font-size: 42px;
+    font-size: 36px;
+    font-weight: 900;
+    font-family: 'Inter', sans-serif;
     text-align: left;
     padding-left: 10px;
     letter-spacing: 2px;
@@ -507,136 +705,272 @@ button,
     line-height: 1.3;
 }
 
-#stamp a {
-    color: #fff;
-}
-
 /* 下部ボタン */
-#stamp>p:last-child {
-    margin-top: 60px;
-    text-align: center;
-}
-
-#stamp button {
+.stamp-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
     min-width: 280px;
+    margin: 60px auto 0;
+    /* 上マージン60px ＆ 左右中央揃え */
     padding: 16px 20px;
     background: #1c1c1c;
-    border-radius: 12px;
-}
-
-#stamp button a {
     color: #fff;
-    text-decoration: none;
     font-size: 16px;
     font-weight: bold;
+    text-decoration: none;
+    border-radius: 12px;
+    box-sizing: border-box;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+#stamp a:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
 }
 
 
-
-
-
-/* map */
+/* =========================================================
+    MAP
+========================================================= */
 #map {
-    min-height: 496px;
-    padding: 10px 0;
+    padding: 12px 16px 40px;
     background: url("../images/map_backimage.png") center / cover no-repeat;
-    position: relative;
-    overflow: hidden;
 }
 
-/* MAPタイトル */
+.map-header {
+    margin-bottom: 20px;
+    padding: 0 4px;
+}
+
+/* タイトル「MAP」 */
 #map h2 {
-    font-size: 42px;
-    text-align: left;
-    padding-left: 20px;
+    font-size: 36px;
+    font-weight: 900;
+    font-family: 'Inter', sans-serif;
     letter-spacing: 2px;
     color: #000;
+    line-height: 1;
+    margin: 0;
 }
 
-/* タイトルテキストのグループ (.maptitle) */
+/* 右上の深緑ラベル */
 .maptitle {
-    position: absolute;
-    top: 30;
-    right: 0;
-    z-index: 99;
-    margin-top: -38px;
-    /* 「MAP」の文字の高さに合わせるように上に引き上げ */
-    margin-right: 20px;
-    text-align: right;
-
+    margin-left: auto;
+    /* 右寄せ配置 */
+    width: fit-content;
+    /* 幅を中身のテキスト長さに制限 */
+    margin-top: 6px;
+    background-color: #05240F;
+    color: #ffffff;
+    padding: 5px 16px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-/* 創世編 */
-.maptitle p:first-child {
-    font: 700 48px/1 "Hiragino Mincho ProN", "Yu Mincho", serif;
+.maptitle span {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 20px;
+    font-weight: medium;
+    letter-spacing: 1px;
+}
+
+.maptitle p {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 15px;
+    font-weight: medium;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/* 2. マップ画像エリア */
+.map-image-wrap {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.map-image-wrap img {
+    width: 100%;
+    max-width: 386px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+    /* 画像まわりの影 */
+}
+
+/* 3. ボタンエリア */
+.map-btn-wrap {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.map-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(260px, 80%, 320px);
+    padding: 16px 20px;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    /* 完全な丸み */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.map-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   Archive
+========================================================= */
+#archive {
+    padding: 12px 16px 40px;
+    background: url("../images/map_backimage.png") center / cover no-repeat;
+    border-top: 1px solid #000;
+}
+
+#archive h2 {
+    font-size: 36px;
+    font-weight: 900;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 2px;
+    color: #000;
+    text-align: left;
+    padding-left: 4px;
+}
+
+/* リード文 */
+.archive-lead {
+    margin: 15px 0 28px 4px;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.6;
+    color: #000;
+    justify-content: center;
+}
+
+/* 2列グリッド配置 */
+.archive-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 17px 12px;
+}
+
+/* カード共通スタイル */
+.archive-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 4px;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+/* 解放済み（アクティブ）ボタン */
+.archive-card.active {
+    background-color: #ffffff;
+    border: 2px solid #0D8B80;
+    color: #0D8B80;
+}
+
+.archive-card.active:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
+}
+
+/* 未解放（グレーアウト）ボタン */
+.archive-card.disabled {
+    background-color: #B2B2B2;
+    border: 2px solid #6b6b6b;
+    color: #555555;
+    cursor: not-allowed;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* サブタイトル（創世編） */
+.archive-card .sub-title {
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.archive-card.active .sub-title {
+    color: #0D8B80;
+}
+
+.archive-card.disabled .sub-title {
+    color: #616161;
+}
+
+/* メインタイトル（エリア名） */
+.archive-card .main-title {
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.archive-card.disabled .main-title {
+    color: #4a4a4a;
+}
+
+/* 下部注釈文 */
+.archive-note {
+    margin-top: 35px;
+    text-align: center;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 12px;
+    font-weight: 600;
     color: #000;
 }
 
-/* 八王子駅ルート */
-.maptitle p:last-child {
-    margin-top: 8px;
-    font-size: 16px;
-    color: #a0a0a0;
-    /* カンプに合わせた薄いグレー */
+/* =========================================================
+   トースト通知 (未解放エリアポップアップ)
+========================================================= */
+.toast {
+    position: fixed;
+    bottom: -60px;
+    /* 初期位置（画面外） */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #ffffff;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-size: 14px;
     font-weight: bold;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: bottom 0.3s ease, opacity 0.3s ease;
+    white-space: nowrap;
 }
 
-/* マップ画像コンテナ（.maptitle以外のdivを指定） */
-#map>div:not(.maptitle) {
-    margin: 20px 0 0 0;
-    width: 90%;
-    /* 右側に矢印用のスペース（10%）を空ける */
-    position: relative;
+/* 表示時のクラス */
+.toast.show {
+    bottom: 40px;
+    /* 下からふわっと浮き出る位置 */
+    opacity: 1;
 }
 
-#map>div:not(.maptitle) img {
-    width: 100%;
-    display: block;
-}
-
-/* 右側の「＞」矢印をCSSで作成 */
-#map>div:not(.maptitle)::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -5%;
-    /* 枠外のスペースに配置 */
-    transform: translateY(-50%) rotate(45deg);
-    width: 18px;
-    height: 18px;
-    border-top: 3px solid #000;
-    border-right: 3px solid #000;
-}
-
-/* ボタンエリア */
-#map>p:last-of-type {
-    margin-top: 40px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* スタンプラリーをはじめる ボタン */
-#map button {
-    min-width: 280px;
-    padding: 16px 20px;
-    background: #000;
-    color: #fff;
-    border-radius: 40px;
-    /* カンプに合わせた完全な丸み（ピルシェイプ） */
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-}
-
-
-
-
-
-
-/* notice / footer */
+/* =========================================================
+    注意事項セクション (NOTICE)
+========================================================= */
 #notice {
     min-height: 390px;
-    padding: 40px 20px;
+    padding: 30px 20px;
     /* 上下の余白を少し増やして調整 */
     color: #fff;
     background: #414141;
@@ -705,34 +1039,174 @@ button,
 }
 
 
-
-/** footer */
-footer {
-    padding: 15px 20px 22px;
+/* =========================================================
+   アンケートセクション (SURVEY)
+========================================================= */
+#survey {
+    background-color: #FDF5EE;
+    /* 背景色 */
+    padding: 25px 20px;
     text-align: center;
-    background: #f6f4f1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-footer p {
-    min-height: 31px;
-    padding: 8px 0;
-    border-bottom: 1px solid #ddd;
-    font-size: 7px;
+/* 上部テキスト：「＼1〜2分で終わります！／」 */
+.survey-lead {
+    color: #0D8B80;
+    font-size: clamp(18px, 5vw, 19px);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 18px;
 }
 
+/* ボタンラッパー */
+.survey-btn-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+/* 緑色カプセルボタン */
+.survey-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: clamp(270px, 90%, 330px);
+    padding: 16px 20px;
+    background-color: #0D8B80;
+    /* ボタン背景色 */
+    color: #FFFFFF;
+    /* 文字色 */
+    font-size: clamp(18px, 5vw, 20px);
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    /* 完全な丸み（ピルシェイプ） */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    /* ボタン下の自然な影 */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+/* 右矢印 「＞」 */
+.survey-btn span {
+    font-family: Arial, sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* ホバー時のアニメーション */
+.survey-btn:hover {
+    opacity: 0.92;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.22);
+}
+
+/* 下部説明文 */
+.survey-desc {
+    color: #1a1a1a;
+    font-size: 13px;
+    line-height: 1.7;
+    font-weight: medium;
+}
+
+
+
+/* =========================================================
+   フッター
+========================================================= */
+footer {
+    padding: 40px 20px 40px;
+    text-align: center;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 1. タイトル「八王子市彫刻巡りスタンプラリー SNS」 */
+footer>p:first-child {
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+    letter-spacing: 0.5px;
+    margin-bottom: 22px;
+}
+
+/* 2. SNSアイコン (左: X / 右: Instagram) */
+.sns-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 42px;
+    flex-direction: row-reverse;
+    /* HTMLの記述順を反転しXを左配置 */
+}
+
+.sns-icon p {
+    margin: 0;
+    padding: 0;
+}
+
+.sns-icon img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+}
+
+/* 3. 連携ロゴ3種（縦並び・中央配置・十分な余白） */
+.footericon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    /* 各ロゴ同士の上下間隔 */
+    width: 100%;
+    margin-bottom: 45px;
+}
+
+.footericon a {
+    width: 240px;
+    /* カンプに合わせたロゴサイズ */
+    max-width: 80%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.sns-icon a:hover img {
+    opacity: 0.7;
+}
+
+.footericon a:hover img {
+    opacity: 0.7;
+}
+
+/* 4. 黒い区切り線 ＆ コピーライト */
 .copyright {
-    margin-top: 25px;
-    border-bottom: 0;
-    color: #777;
-    font-size: 10px;
+    color: #000;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding-top: 35px;
+    border-top: 1.5px solid #000;
+    /* くっきりとした黒の直線 */
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
 }
 
-footer img {
-    display: inline-block;
-    max-width: 18px;
-    max-height: 18px;
-    margin-right: 7px;
-    vertical-align: middle;
+
+
+@media (min-width: 403px) {
+    main {
+        box-shadow: 0 0 18px rgba(0, 0, 0, .16);
+    }
 }
 
 @media (min-width: 403px) {
@@ -879,4 +1353,75 @@ footer img {
     .decor-img:not(.header-grad) {
         display: none;
     }
+}
+
+
+
+/* =========================================================
+    Loading Screen
+========================================================= */
+#loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#loading-screen.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loading-inner {
+    width: min(80%, 260px);
+    text-align: center;
+}
+
+.loading-icon {
+    margin: 0 auto 20px;
+}
+
+.loading-title {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: var(--ink);
+    margin-bottom: 28px;
+}
+
+.loading-bar-wrap {
+    width: 100%;
+    height: 4px;
+    background: rgba(26, 26, 26, 0.15);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 14px;
+}
+
+.loading-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--ink);
+    border-radius: 2px;
+}
+
+.loading-percent {
+    font-family: 'Jersey 10', sans-serif;
+    font-size: 30px;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+}
+
+.loading-percent span {
+    font-size: 16px;
+}
+
+body.is-loading {
+    overflow: hidden;
 }
