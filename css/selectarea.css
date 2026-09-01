@@ -24,10 +24,13 @@ li {
 
 body {
     min-width: 320px;
-    color: #111;
-    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-    background: url("../images/footer_gradation.png") center bottom / 100% auto no-repeat,
-        url("../images/header_gradation.png") center top / 100% auto no-repeat, #fff;
+    color: var(--ink);
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    background:
+        url("../images/footer_gradation.png") center bottom / 100% auto no-repeat,
+        #e9e7e0 url("../images/body_backgraudimage.png") center top / 100% auto;
+    vertical-align: bottom;
+    position: relative;
 }
 
 img {
@@ -36,10 +39,13 @@ img {
 }
 
 main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     width: min(100%, var(--content-width));
-    height: 100vh;
+    min-height: 100vh;
     margin: 0 auto;
-    overflow: hidden;
+    z-index: 2;
     background-color: #fff;
 }
 
@@ -68,51 +74,53 @@ header h1 {
 =========================================================*/
 
 .section-title-wrapper {
-    display: block;
-    width: fit-content;
-    margin: 35px auto 42px;
+    display: flex;
     justify-content: center;
+    margin: 35px auto 42px;
+    width: 100%;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.25));
 }
 
 .section-title-bg {
-    position: relative;
-    display: block;
-    margin: 0 auto;
-    width: min(80%, 644px);
-    min-height: 90px;
-    padding: 12px 50px;
-    color: #fff;
-    background: #0D8B80;
-    border: 2px solid #fff;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, .25);
-}
+    /* ▼ 追加：Flexboxにすることで、中の要素が親の高さに合わせて伸びるようになります */
+    display: flex;
+    background: #ffffff;
+    padding: 2px;
+    width: min(90%, 644px);
+    /* ※もし min-height: 90px; などが残っていたら削除してください */
 
-.section-title-bg::before,
-.section-title-bg::after {
-    position: absolute;
-    top: 50%;
-    width: 30px;
-    height: 30px;
-    content: "";
-    background: #fff;
-    transform: translateY(-50%) rotate(45deg);
-}
-
-.section-title-bg::before {
-    left: -18px;
-}
-
-.section-title-bg::after {
-    right: -18px;
+    clip-path: polygon(14px 0,
+            100% 0,
+            100% calc(100% - 14px),
+            calc(100% - 14px) 100%,
+            0 100%,
+            0 14px);
 }
 
 .section-title-text {
-    position: relative;
-    z-index: 1;
+    /* ▼ 追加：中のテキストを上下左右中央に配置し、幅と高さを親に合わせます */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    background: #0D8B80;
+    color: #ffffff;
+    padding: 12px 20px;
+    box-sizing: border-box;
+
+    clip-path: polygon(12px 0,
+            100% 0,
+            100% calc(100% - 12px),
+            calc(100% - 12px) 100%,
+            0 100%,
+            0 12px);
+
+    text-align: center;
     font-size: 16px;
     font-weight: 500;
-    letter-spacing: .08em;
-    line-height: 1.2;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
 }
 
 /*=========================================================
@@ -140,11 +148,11 @@ header h1 {
 .map-area {
     position: absolute;
     z-index: 1;
-    min-width: 128px;
-    padding: 12px 14px;
+    min-width: 70px;
+    padding: 10px 12px;
     color: #111;
     font: inherit;
-    font-size: clamp(13px, 2.35vw, 17px);
+    font-size: 11px;
     font-weight: 700;
     line-height: 1.15;
     white-space: nowrap;
@@ -158,7 +166,7 @@ header h1 {
 
 .map-area:hover,
 .map-area:focus-visible {
-    outline: 3px solid #119187;
+    outline: 3px solid #0D8B80;
     outline-offset: 2px;
     transform: translate(-50%, -50%) scale(1.05);
 }
@@ -207,6 +215,8 @@ header h1 {
     top: 76%;
     left: 91%;
     white-space: normal;
+    width: 90px;
+    text-align: center;
 }
 
 .minami-osawa {
@@ -219,7 +229,8 @@ header h1 {
 =========================================================*/
 
 .button-wrapper {
-    margin-top: 540px;
+    margin-top: auto;
+    padding: 32px 0 92px;
     text-align: center;
 }
 
@@ -227,18 +238,18 @@ header h1 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: min(77%, 620px);
-    min-height: 102px;
+    width: 309px;
+    min-height: 51px;
     padding: 18px 30px;
-    color: #119187;
-    font-size: clamp(20px, 3.5vw, 30px);
+    color: #0D8B80;
+    font-size: 17px;
     font-weight: 700;
     letter-spacing: .04em;
     text-decoration: none;
     background: #fff;
-    border: 4px solid #55998f;
+    border: 2px solid #0D8B80;
     border-radius: 999px;
-    box-shadow: 5px 8px 8px rgba(0, 0, 0, .3);
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, .3);
     transition: transform .2s ease, box-shadow .2s ease;
 }
 
@@ -250,8 +261,7 @@ header h1 {
 
 @media (max-width: 480px) {
     main {
-        min-height: 100vh;
-        padding-bottom: 70px;
+        padding-bottom: 24px;
     }
 
     .section-title-wrapper {
@@ -261,6 +271,10 @@ header h1 {
     .section-title-bg {
         min-height: 64px;
         border-width: 3px;
+    }
+
+    .section-title {
+        padding: 7px 8px;
     }
 
     .section-title-bg::before,
@@ -283,12 +297,34 @@ header h1 {
         font-size: clamp(9px, 3.2vw, 13px);
     }
 
-    .button-wrapper {
-        margin-top: min(32vw, 160px);
-    }
-
     .btn-back {
         min-height: 62px;
         border-width: 3px;
     }
+}
+
+
+/*=========================================================
+#背景装飾
+=========================================================*/
+.bg-decorations {
+    position: fixed;
+    width: 100%;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: .5;
+}
+
+.decor-img {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.header-grad {
+    top: 0;
+    left: 0;
+    width: 100%;
 }
