@@ -1,3 +1,5 @@
+// ページが開かれたら解放フラグを保存
+localStorage.setItem('hachiojiStationUnlocked', 'true');
 // 彫刻データ
 const TOTAL_ITEMS = 11;
 const SCULPTURES = [

@@ -65,6 +65,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     requestAnimationFrame(tick);
 })();
+const loadingScreen = document.getElementById('loading-screen');
+
+if (loadingScreen) {
+    // スキップ共通処理
+    const skipLoading = () => {
+        if (!loadingScreen.classList.contains('is-hidden')) {
+            loadingScreen.classList.add('is-hidden');
+            document.body.classList.remove('is-loading'); // スクロールロック解除
+            sessionStorage.setItem('sculptureLoadingShown', 'true'); // フラグ保持
+        }
+    };
+
+    // 画面タップ・クリックで即座にスキップ
+    loadingScreen.addEventListener('click', skipLoading);
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -141,5 +156,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 modal.classList.remove('show');
             }
         });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const hachiojiCard = document.getElementById('card-hachioji');
+
+    if (hachiojiCard) {
+        // localStorageから訪問フラグを取得
+        const isUnlocked = localStorage.getItem('hachiojiStationUnlocked') === 'true';
+
+        if (isUnlocked) {
+            // 解放時の処理：見た目をactiveにし、クリックでページ遷移
+            hachiojiCard.classList.remove('disabled');
+            hachiojiCard.classList.add('active');
+            hachiojiCard.style.cursor = 'pointer';
+
+            hachiojiCard.addEventListener('click', () => {
+                window.location.href = 'html/archive_hachiojistation.html';
+            });
+        } else {
+            // ロック時の処理：クリックでトースト表示
+            hachiojiCard.addEventListener('click', () => {
+                const toast = document.getElementById('toast');
+                if (toast) {
+                    toast.innerText = '未解放エリアです！';
+                    toast.classList.add('show');
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 2000);
+                }
+            });
+        }
     }
 });

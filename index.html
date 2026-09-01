@@ -43,6 +43,8 @@
                 <div class="loading-bar" id="loadingBar"></div>
             </div>
             <p class="loading-percent" id="loadingPercent">0<span>%</span></p>
+            <!-- タップ案内のテキストを追加 -->
+            <p class="loading-skip-note"></p>
         </div>
     </div>
     <script>
@@ -217,13 +219,11 @@
             </p>
 
             <div class="archive-grid">
-                <!-- 解放済み（アクティブ）エリア -->
-                <a href="html/archive_hachiojistation.html" class="archive-card active">
+                <!--エリア -->
+                <div class="archive-card disabled" id="card-hachioji">
                     <span class="sub-title">創世編</span>
                     <span class="main-title">八王子駅エリア</span>
-                </a>
-
-                <!-- 未解放（グレーアウト）エリア -->
+                </div>
                 <div class="archive-card disabled">
                     <span class="sub-title">創世編</span>
                     <span class="main-title">西八王子エリア</span>
