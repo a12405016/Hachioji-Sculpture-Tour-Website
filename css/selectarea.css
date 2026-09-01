@@ -1,0 +1,294 @@
+@charset "UTF-8";
+
+:root {
+    --content-width: 402px;
+    --ink: #1a1a1a;
+    --white: #fff;
+    --mobileites: #0D8B80;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+li {
+    list-style-type: none;
+}
+
+body {
+    min-width: 320px;
+    color: #111;
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    background: url("../images/footer_gradation.png") center bottom / 100% auto no-repeat,
+        url("../images/header_gradation.png") center top / 100% auto no-repeat, #fff;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+main {
+    width: min(100%, var(--content-width));
+    height: 100vh;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+/*=========================================================
+#header
+=========================================================*/
+header {
+    position: relative;
+    z-index: 3;
+    height: 62px;
+    background: url("../images/headerimage.png") center / cover no-repeat;
+}
+
+header h1 {
+    width: 100%;
+}
+
+#header0 img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/*=========================================================
+#セレクトタイトル
+=========================================================*/
+
+.section-title-wrapper {
+    display: block;
+    width: fit-content;
+    margin: 35px auto 42px;
+    justify-content: center;
+}
+
+.section-title-bg {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    width: min(80%, 644px);
+    min-height: 90px;
+    padding: 12px 50px;
+    color: #fff;
+    background: #0D8B80;
+    border: 2px solid #fff;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .25);
+}
+
+.section-title-bg::before,
+.section-title-bg::after {
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    content: "";
+    background: #fff;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.section-title-bg::before {
+    left: -18px;
+}
+
+.section-title-bg::after {
+    right: -18px;
+}
+
+.section-title-text {
+    position: relative;
+    z-index: 1;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    line-height: 1.2;
+}
+
+/*=========================================================
+#MAP
+=========================================================*/
+
+.map-container {
+    position: relative;
+    width: calc(100% - 32px);
+    margin: 0 auto;
+    border: 2px solid #e99a25;
+}
+
+.map-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.map-area-buttons {
+    position: absolute;
+    inset: 0;
+}
+
+.map-area {
+    position: absolute;
+    z-index: 1;
+    min-width: 128px;
+    padding: 12px 14px;
+    color: #111;
+    font: inherit;
+    font-size: clamp(13px, 2.35vw, 17px);
+    font-weight: 700;
+    line-height: 1.15;
+    white-space: nowrap;
+    cursor: pointer;
+    background: rgba(255, 255, 255, .92);
+    border: 0;
+    border-radius: 999px;
+    box-shadow: 2px 4px 7px rgba(0, 0, 0, .32);
+    transform: translate(-50%, -50%);
+}
+
+.map-area:hover,
+.map-area:focus-visible {
+    outline: 3px solid #119187;
+    outline-offset: 2px;
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.other {
+    top: 9%;
+    left: 12%;
+}
+
+.city-hall {
+    top: 25.5%;
+    left: 44%;
+}
+
+.kita-hachioji {
+    top: 23%;
+    left: 90%;
+}
+
+.hachioji-station {
+    top: 37%;
+    left: 61%;
+}
+
+.nishi-hachioji {
+    top: 46%;
+    left: 33%;
+}
+
+.takao {
+    top: 66%;
+    left: 10%;
+}
+
+.katakura {
+    top: 69%;
+    left: 40%;
+}
+
+.kitano {
+    top: 66%;
+    left: 62%;
+}
+
+.tama-center {
+    top: 76%;
+    left: 91%;
+    white-space: normal;
+}
+
+.minami-osawa {
+    top: 88%;
+    left: 67%;
+}
+
+/*=========================================================
+#戻るボタン
+=========================================================*/
+
+.button-wrapper {
+    margin-top: 540px;
+    text-align: center;
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: min(77%, 620px);
+    min-height: 102px;
+    padding: 18px 30px;
+    color: #119187;
+    font-size: clamp(20px, 3.5vw, 30px);
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-decoration: none;
+    background: #fff;
+    border: 4px solid #55998f;
+    border-radius: 999px;
+    box-shadow: 5px 8px 8px rgba(0, 0, 0, .3);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.btn-back:hover,
+.btn-back:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, .28);
+}
+
+@media (max-width: 480px) {
+    main {
+        min-height: 100vh;
+        padding-bottom: 70px;
+    }
+
+    .section-title-wrapper {
+        margin: 28px auto 44px;
+    }
+
+    .section-title-bg {
+        min-height: 64px;
+        border-width: 3px;
+    }
+
+    .section-title-bg::before,
+    .section-title-bg::after {
+        width: 21px;
+        height: 21px;
+    }
+
+    .section-title-bg::before {
+        left: -13px;
+    }
+
+    .section-title-bg::after {
+        right: -13px;
+    }
+
+    .map-area {
+        min-width: 0;
+        padding: 7px 8px;
+        font-size: clamp(9px, 3.2vw, 13px);
+    }
+
+    .button-wrapper {
+        margin-top: min(32vw, 160px);
+    }
+
+    .btn-back {
+        min-height: 62px;
+        border-width: 3px;
+    }
+}

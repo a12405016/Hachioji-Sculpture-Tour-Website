@@ -27,7 +27,6 @@ body {
         #e9e7e0 url("../images/body_backgraudimage.png") center top / 100% auto;
     vertical-align: bottom;
     position: relative;
-    /* ★これを追加 */
 }
 
 .header-grad {
@@ -59,37 +58,6 @@ main {
 }
 
 
-/* header / hero */
-header {
-    position: relative;
-    z-index: 3;
-    height: 62px;
-    background: url("../images/headerimage.png") center / cover no-repeat;
-}
-
-header h1 {
-    width: 100%;
-}
-
-header h1 img {
-    width: 100%;
-}
-
-
-/* bg-decorations の高さをページ全体に伸ばし、縦の切り取りを解除します */
-.bg-decorations {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    /* width: 100% の代わりに左右を指定 */
-    bottom: 0;
-    /* height: 100% の代わりに bottom: 0 で一番下まで伸ばす */
-    z-index: -1;
-    overflow-x: hidden;
-    /* ★ overflow: hidden; を変更（横のはみ出しだけ隠す） */
-    pointer-events: none;
-}
 
 /* =========================================================
     Nav
@@ -138,8 +106,226 @@ header h1 img {
 }
 
 /* =========================================================
+    ハンバーガーメニュー（通常時は非表示）
+========================================================= */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    z-index: 10000;
+    /* メニューより手前に配置 */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 24px;
+    opacity: 0;
+    /* 初期状態は透明 */
+    pointer-events: none;
+    /* 透明な時はクリック不可にする */
+    transition: opacity 0.5s ease-in-out;
+    /* ふんわり表示させる */
+}
+
+/* JSで付与する表示用クラス */
+.hamburger.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    /* クリック可能に戻す */
+}
+
+.hamburger span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: var(--ink, #333);
+    /* 必要に応じて色を変更 */
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+}
+
+.hamburger span:nth-child(1) {
+    top: 0;
+}
+
+.hamburger span:nth-child(2) {
+    top: 10px;
+}
+
+.hamburger span:nth-child(3) {
+    top: 20px;
+}
+
+/* ハンバーガーがクリックされた時（×印になる）のアニメーション */
+.hamburger.active span:nth-child(1) {
+    top: 10px;
+    transform: rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    top: 10px;
+    transform: rotate(-45deg);
+}
+
+/* =========================================================
+    レスポンシブ対応（706px以下） - メニューの挙動
+========================================================= */
+@media screen and (max-width: 706px) {
+    .hamburger {
+        display: block;
+        /* スマホでボタンを表示 */
+    }
+
+    /* メニューを画面全体に被せる設定 */
+    .nav-menu {
+        position: fixed !important;
+        /* 親要素の制限を強制解除 */
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw;
+        /* 画面幅いっぱい */
+        height: 100vh;
+        height: 100dvh;
+        /* スマホのアドレスバー分を考慮した高さ */
+        background-color: rgba(243, 238, 227, 0.98);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+
+        /* rightでの移動ではなく、transformを使って滑らかにスライド */
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* アクティブ時に画面内にスライドイン */
+    .nav-menu.active {
+        transform: translateX(0);
+    }
+
+    .nav-menu ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* 子要素（li）を中央揃え */
+        gap: 20px;
+        /* ボタン同士の間隔（お好みで調整してください） */
+        padding: 0 !important;
+        /* ブラウザ標準の左余白を消去 */
+        margin: 0;
+        width: 100%;
+    }
+
+    .nav-menu ul li {
+        list-style: none;
+    }
+
+    .nav-menu ul li a {
+        display: block;
+        width: 200px;
+        padding: 16px 20px;
+        background-color: #6a6a6a;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 16px;
+        letter-spacing: 1.5px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+}
+
+/* =========================================================
+    ポップアップ（モーダル）のスタイル
+========================================================= */
+.map-zoom-img {
+    cursor: pointer;
+    /* クリックできることを指マークで示す */
+}
+
+.modal {
+    display: none;
+    /* 初期状態は非表示 */
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* JavaScriptで .show が付いたときにフェードイン */
+.modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+/* =========================================================
     Header
 ========================================================= */
+header {
+    position: relative;
+    z-index: 3;
+    height: 62px;
+    background: url("../images/headerimage.png") center / cover no-repeat;
+}
+
+header h1 {
+    width: 100%;
+}
+
+header h1 img {
+    width: 100%;
+}
+
+.bg-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* width: 100% の代わりに左右を指定 */
+    bottom: 0;
+    /* height: 100% の代わりに bottom: 0 で一番下まで伸ばす */
+    z-index: -1;
+    overflow-x: hidden;
+    pointer-events: none;
+}
+
 #header {
     position: relative;
     height: clamp(678px, 211.9vw, 852px);

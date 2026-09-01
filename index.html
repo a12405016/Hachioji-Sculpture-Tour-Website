@@ -52,7 +52,11 @@
             }
         })();
     </script>
-
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <nav class="nav-menu" id="navMenu">
         <ul>
             <li><a href="#header0">TOP</a></li>
@@ -194,7 +198,7 @@
 
             <!-- マップ画像 -->
             <div class="map-image-wrap">
-                <img src="images/areamap.png" width="386px" height="auto" alt="スタンプラリーマップ">
+                <img src="images/areamap.png" width="386px" height="auto" alt="スタンプラリーマップ" class="map-zoom-img">
             </div>
 
             <!-- ボタン -->
@@ -335,6 +339,10 @@
     </div>
     <!-- トースト通知用要素 -->
     <div id="toast" class="toast">未解放エリアです！</div>
+    <div id="image-modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modal-img" alt="マップ拡大画像">
+    </div>
 </body>
 
 <script src="js/script.js"></script>
