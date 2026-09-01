@@ -39,7 +39,7 @@ img {
 }
 
 main {
-    display: relative;
+    position: relative;
     flex-direction: column;
     width: min(100%, var(--content-width));
     min-height: 100vh;
@@ -247,16 +247,27 @@ article {
     left: 50%;
     transform: translateX(-50%);
     width: min(100%, var(--content-width));
-    max-height: 95vh;
+    /* 見切れ防止・スクロール設定 */
+    max-height: 85vh;
+    /* 高さを画面の85%までに制限（必須） */
+    max-height: 85dvh;
+    /* スマホのUIを考慮した高さ指定 */
     overflow-y: auto;
+    /* 画面に収まらない場合は内部をスクロールさせる */
     background: #e9e7e0 url("../images/map_backimage.png") center top / cover;
     border-radius: 20px 20px 0 0;
     padding: 30px 24px;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
     transition: bottom 0.3s cubic-bezier(0.1, 0.8, 0.2, 1);
-    z-index: 101;
+    z-index: 1000;
     display: flex;
     flex-direction: column;
+}
+
+/* ポップアップ表示時 */
+.popup-content.show {
+    transform: translate(-50%, 0);
+    /* 下からスライドして表示 */
 }
 
 .popup-content.show {
@@ -273,6 +284,31 @@ article {
     color: #555;
     cursor: pointer;
 }
+
+/* ▼ スマホ用（画面下にくっつく「ボトムシート」型の表示） */
+@media (max-width: 480px) {
+    .popup-content {
+        top: auto;
+        /* topの指定を解除 */
+        bottom: 0;
+        /* 画面の真下に固定 */
+        left: 0;
+        width: 100%;
+        /* 横幅を画面いっぱいに */
+        border-radius: 20px 20px 0 0;
+        /* 上の角だけ丸くする */
+
+        /* 表示アニメーション（下からスライド） */
+        transform: translateY(100%);
+        transition: transform 0.3s ease-out;
+    }
+
+    .popup-content.show {
+        transform: translateY(0);
+        /* クラスが付いたら元の位置(0)へ */
+    }
+}
+
 
 /* =========================================
    ポップアップ（コンテンツ詳細）
@@ -386,8 +422,7 @@ article {
     /* ボタン同士の間隔 */
     padding: 20px 24px;
     /* 内側の余白をポップアップと統一 */
-    margin: 24px 0;
-    /* 外側のマージン */
+    margin: 24px 0 0 0;
     box-sizing: border-box;
 }
 
