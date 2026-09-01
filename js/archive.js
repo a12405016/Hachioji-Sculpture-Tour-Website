@@ -194,8 +194,21 @@ function renderGrid() {
 
     // プログレスバーとカウントの更新
     const count = unlockedSet.size;
+    const progressFill = document.getElementById("progressFill");
+    const progressContainer = document.querySelector(".progress-bar-container");
+    const percentage = (count / TOTAL_ITEMS) * 100;
+
     document.getElementById("progressCount").textContent = `${count} / ${TOTAL_ITEMS}`;
-    document.getElementById("progressFill").style.width = `${(count / TOTAL_ITEMS) * 100}%`;
+    progressFill.style.width = `${percentage}%`;
+
+    // 100%達成時に完成クラスを付与/削除
+    if (count === TOTAL_ITEMS) {
+        progressFill.classList.add("completed");
+        if (progressContainer) progressContainer.classList.add("completed");
+    } else {
+        progressFill.classList.remove("completed");
+        if (progressContainer) progressContainer.classList.remove("completed");
+    }
 }
 
 // 初期化処理
