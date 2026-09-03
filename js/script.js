@@ -1,26 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const disabledCards = document.querySelectorAll('.archive-card.disabled');
-    const toast = document.getElementById('toast');
-    let toastTimer = null;
-
-    disabledCards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            // 連打された場合にタイマーをリセット
-            if (toastTimer) clearTimeout(toastTimer);
-
-            // トーストを表示
-            toast.classList.add('show');
-
-            // 2.5秒後に自動で隠す
-            toastTimer = setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2500);
-        });
-    });
-});
-
 /* =========================================================
     Loading Screen
     ・タブを閉じるまで1回だけ表示（sessionStorageで判定）
@@ -65,8 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     requestAnimationFrame(tick);
 })();
-const loadingScreen = document.getElementById('loading-screen');
 
+const loadingScreen = document.getElementById('loading-screen');
 if (loadingScreen) {
     // スキップ共通処理
     const skipLoading = () => {
@@ -81,6 +58,7 @@ if (loadingScreen) {
     loadingScreen.addEventListener('click', skipLoading);
 }
 
+
 document.addEventListener('DOMContentLoaded', () => {
 
     /* =========================================================
@@ -91,31 +69,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-menu a');
 
     if (hamburger && navMenu) {
-
-        // 【追加】スクロールしてアイコンを表示する処理
+        // スクロールしてアイコンを表示する処理
         const showHamburgerOnScroll = () => {
-            // 例: 50px以上スクロールしたら表示
             if (window.scrollY > 50) {
                 hamburger.classList.add('is-visible');
-                // 一度表示されたら監視を終了する（リロードまで表示されたまま）
                 window.removeEventListener('scroll', showHamburgerOnScroll);
             }
         };
 
-        // スクロールイベントを監視
         window.addEventListener('scroll', showHamburgerOnScroll);
+        showHamburgerOnScroll(); // ページ読み込み時に既にスクロールされていた場合の対処
 
-        // ページ読み込み時に既にスクロールされていた場合の対処
-        showHamburgerOnScroll();
-
-
-        // 既存：ボタンクリックでクラスをつけ外しする
+        // ボタンクリックでクラスをつけ外しする
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
 
-        // 既存：リンクをクリックしたらメニューを閉じる
+        // リンクをクリックしたらメニューを閉じる
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
@@ -125,68 +96,88 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* =========================================================
-        マップ画像ポップアップ（モーダル）ロジック
+        2. マップ画像ポップアップ（モーダル）ロジック
     ========================================================= */
     const modal = document.getElementById('image-modal');
     const modalImg = document.getElementById('modal-img');
     const modalClose = document.querySelector('.modal-close');
-
-    // HTMLでマップ画像に class="map-zoom-img" を付けた想定
     const mapImages = document.querySelectorAll('.map-zoom-img');
 
     if (modal && modalImg) {
-        // 画像をクリックしたらモーダルを表示
         mapImages.forEach(img => {
             img.addEventListener('click', () => {
                 modal.classList.add('show');
-                modalImg.src = img.src; // クリックした画像のパスをモーダルに渡す
+                modalImg.src = img.src;
             });
         });
 
-        // ×ボタンで閉じる
         if (modalClose) {
             modalClose.addEventListener('click', () => {
                 modal.classList.remove('show');
             });
         }
 
-        // モーダルの背景（黒い部分）をクリックしても閉じる
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.classList.remove('show');
             }
         });
     }
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-    const hachiojiCard = document.getElementById('card-hachioji');
+    /* =========================================================
+        3. アーカイブエリアの解放状態チェック・クリック判定
+    ========================================================= */
+    const toast = document.getElementById('toast');
+    let toastTimer = null;
 
-    if (hachiojiCard) {
-        // localStorageから訪問フラグを取得
-        const isUnlocked = localStorage.getItem('hachiojiStationUnlocked') === 'true';
+    // トースト通知を表示する関数
+    const showToast = (msg) => {
+        if (!toast) return;
+        if (toastTimer) clearTimeout(toastTimer);
+        toast.innerText = msg;
+        toast.classList.add('show');
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+    };
 
-        if (isUnlocked) {
-            // 解放時の処理：見た目をactiveにし、クリックでページ遷移
-            hachiojiCard.classList.remove('disabled');
-            hachiojiCard.classList.add('active');
-            hachiojiCard.style.cursor = 'pointer';
-
-            hachiojiCard.addEventListener('click', () => {
-                window.location.href = 'html/archive_hachiojistation.html';
-            });
-        } else {
-            // ロック時の処理：クリックでトースト表示
-            hachiojiCard.addEventListener('click', () => {
-                const toast = document.getElementById('toast');
-                if (toast) {
-                    toast.innerText = '未解放エリアです！';
-                    toast.classList.add('show');
-                    setTimeout(() => {
-                        toast.classList.remove('show');
-                    }, 2000);
-                }
-            });
+    // 各エリアの設定（今後エリアが増えたらここに追加するだけでOKです）
+    const archiveAreas = [
+        {
+            id: 'card-hachioji',
+            storageKey: 'hachiojiStationUnlocked',
+            url: 'html/archive_hachiojistation.html'
+        },
+        {
+            id: 'card-katakura',
+            storageKey: 'katakuraUnlocked',
+            url: 'html/archive_katakura.html'
         }
-    }
+    ];
+
+    // まず、各エリアが解放されているかチェックして設定を反映する
+    archiveAreas.forEach(area => {
+        const card = document.getElementById(area.id);
+        if (card) {
+            const isUnlocked = localStorage.getItem(area.storageKey) === 'true';
+
+            if (isUnlocked) {
+                // 解放済みの場合は disabled を外し、リンクとして機能させる
+                card.classList.remove('disabled');
+                card.classList.add('active');
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', () => {
+                    window.location.href = area.url;
+                });
+            }
+        }
+    });
+
+    // 次に、未解放（まだ disabled クラスがついている）カードにだけトースト設定をする
+    const disabledCards = document.querySelectorAll('.archive-card.disabled');
+    disabledCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.preventDefault();
+            showToast('未解放エリアです！');
+        });
+    });
+
 });

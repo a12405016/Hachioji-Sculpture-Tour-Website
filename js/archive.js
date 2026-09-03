@@ -129,6 +129,7 @@ for (let i = SCULPTURES.length + 1; i <= TOTAL_ITEMS; i++) {
     });
 }
 
+// 解放済みの彫刻IDを保存するためのキー
 const STORAGE_KEY = "hachioji-unlocked-area1";
 let unlockedSet = new Set();
 
