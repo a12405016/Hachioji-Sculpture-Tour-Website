@@ -144,12 +144,12 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'card-hachioji',
             storageKey: 'hachiojiStationUnlocked',
-            url: '../html/archive_hachiojistation.html'
+            url: 'html/archive_hachiojistation.html'
         },
         {
             id: 'card-katakura',
             storageKey: 'katakuraUnlocked',
-            url: '../html/archive_katakura.html'
+            url: 'html/archive_katakura.html'
         }
     ];
 
