@@ -165,10 +165,13 @@ header h1 {
 }
 
 .map-area:hover,
-.map-area:focus-visible {
+.map-area:focus-visible,
+.map-area.is-active {
     outline: 3px solid #0D8B80;
     outline-offset: 2px;
     transform: translate(-50%, -50%) scale(1.05);
+    z-index: 10;
+    /* 他のボタンより上に表示させるために追加推奨 */
 }
 
 .other {
@@ -214,15 +217,185 @@ header h1 {
 .tama-center {
     top: 76%;
     left: 91%;
-    white-space: normal;
-    width: 90px;
     text-align: center;
+    white-space: nowrap;
+    line-height: 1.2;
 }
 
 .minami-osawa {
     top: 88%;
     left: 67%;
 }
+
+/* =========================================
+   エリア詳細ポップアップ
+========================================= */
+/* 背景の暗転と配置 */
+.area-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /* 画面の一番下にくっつける */
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.area-popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ポップアップ本体（ボトムシート型） */
+.area-popup-content {
+    width: 100%;
+    max-width: var(--content-width);
+    /* mainの幅に合わせる */
+    background-image: url('../images/arae-select/popup-background.png');
+    background-size: cover;
+    background-position: center top;
+    border-radius: 30px 30px 0 0;
+    /* 上の角だけ丸くする */
+    padding: 35px 20px 50px;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    /* 下の隙間をなくす */
+    position: relative;
+
+    /* スライドインのアニメーション */
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.area-popup-overlay.active .area-popup-content {
+    transform: translateY(0);
+}
+
+/* 閉じるボタン */
+.area-popup-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    background: none;
+    border: none;
+    font-size: 35px;
+    color: #555;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    font-weight: 100;
+}
+
+.area-popup-close:hover,
+.area-popup-close:focus-visible {
+    color: #111;
+}
+
+/* タイトル */
+.area-popup-title {
+    font-family: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+    font-size: 29px;
+    margin: 0 0 15px 5px;
+    color: #111;
+    letter-spacing: 0.05em;
+    text-align: left;
+}
+
+/* マップ画像 */
+.area-map-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.area-map-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25));
+    /* 地図に少し影をつける */
+}
+
+/* 難易度などの情報枠 */
+.area-info-container {
+    background-image: url('../images/arae-select/area-info.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 70%;
+    /* 幅を少し縮めて右に寄せる */
+    max-width: 280px;
+    margin: 0 5px 32px auto;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.2));
+}
+
+.area-info-text p {
+    font-size: 11px;
+    color: #552D19;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-family: "vdl-megamaru", "VDL-MegaMaru", "VDL メガ丸", sans-serif;
+    text-align: left;
+}
+
+/* スタートボタン */
+.area-start-btn-container {
+    text-align: center;
+}
+
+.area-start-btn {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mobileites);
+    /* #0D8B80 */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 999px;
+    width: 94%;
+    padding: 10px 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    line-height: 1.2;
+}
+
+.area-start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* 1行目：スタンプラリーを始める */
+.btn-top-text {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+/* 2行目：まずは八王子駅へ！ */
+.btn-sub-text {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+/* 下線をつける箇所 */
+.btn-highlight {
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-color: #fff;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+}
+
+
+
 
 /*=========================================================
 #戻るボタン

@@ -29,32 +29,88 @@
         <div class="map-container">
             <img src="../images/areamap.png" alt="八王子市全体のエリアマップ" class="map-image">
             <div class="map-area-buttons" aria-label="エリアを選択">
-                <button class="map-area other" type="button">その他エリア</button>
-                <button class="map-area city-hall" type="button">市役所エリア</button>
-                <button class="map-area kita-hachioji" type="button">北八王子エリア</button>
-                <button class="map-area hachioji-station" type="button">八王子駅エリア</button>
-                <button class="map-area nishi-hachioji" type="button">西八王子エリア</button>
-                <button class="map-area takao" type="button">高尾エリア</button>
-                <button class="map-area katakura" type="button">片倉エリア</button>
-                <button class="map-area kitano" type="button">北野エリア</button>
-                <button class="map-area tama-center" type="button">多摩センター<br>エリア</button>
-                <button class="map-area minami-osawa" type="button">南大沢エリア</button>
+                <button class="map-area other" type="button" data-title="その他エリア"
+                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆" data-info="約60分 / 1.8km"
+                    data-count="11箇所" data-station="市役所付近"
+                    data-link="https://app.mobilites.ashibi.jp/200/index.html">その他エリア</button>
+                <button class="map-area city-hall" type="button" data-title="市役所エリア"
+                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆" data-info="約60分 / 1.8km"
+                    data-count="11箇所" data-station="市役所"
+                    data-link="https://app.mobilites.ashibi.jp/200/index.html">市役所エリア</button>
+                <button class="map-area kita-hachioji" type="button" data-title="北八王子エリア"
+                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆" data-info="約60分 / 1.8km"
+                    data-count="11箇所" data-station="北八王子駅"
+                    data-link="https://app.mobilites.ashibi.jp/200/index.html">北八王子エリア</button>
+                <button class="map-area hachioji-station" type="button" data-title="八王子駅エリア"
+                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆"
+                    data-info="約60分 / 1.8km 🚶" data-count="11箇所" data-station="八王子駅"
+                    data-link="https://app.mobilites.ashibi.jp/200/index.html">八王子駅エリア</button>
+                <button class="map-area nishi-hachioji" type="button" data-title="西八王子エリア"
+                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆"
+                    data-info="約60分 / 1.8km 🚶" data-count="11箇所" data-station="西八王子駅"
+                    data-link="https://app.mobilites.ashibi.jp/200/index.html">西八王子エリア</button>
+                <button class="map-area takao" type="button" data-title="高尾エリア"
+                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆"
+                    data-info="約60分 / 1.8km 🚶" data-count="11箇所" data-station="高尾駅"
+                    data-link="https://app.mobilites.ashibi.jp/200/index.html">高尾エリア</button>
+                <button class="map-area katakura" type="button" data-title="片倉エリア"
+                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆"
+                    data-info="約60分 / 1.8km 🚶" data-count="11箇所" data-station="片倉駅"
+                    data-link="https://app.mobilites.ashibi.jp/200/index.html">片倉エリア</button>
+                <button class="map-area kitano" type="button" data-title="北野エリア"
+                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆"
+                    data-info="約60分 / 1.8km 🚶" data-count="11箇所" data-station="北野駅"
+                    data-link="https://app.mobilites.ashibi.jp/200/index.html">北野エリア</button>
+                <button class="map-area tama-center" type="button" data-title="多摩センターエリア"
+                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆"
+                    data-info="約60分 / 1.8km 🚶" data-count="11箇所" data-station="多摩センター駅"
+                    data-link="https://app.mobilites.ashibi.jp/200/index.html">多摩センター<br>エリア</button>
+                <button class="map-area minami-osawa" type="button" data-title="南大沢エリア"
+                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆"
+                    data-info="約60分 / 1.8km 🚶" data-count="11箇所" data-station="南大沢駅"
+                    data-link="https://app.mobilites.ashibi.jp/200/index.html">南大沢エリア</button>
             </div>
         </div>
 
         <div class="button-wrapper">
             <a href="../index.html" class="btn-back">ホームページに戻る</a>
         </div>
-        <div class="map-btn-wrap">
-            <a href="https://app.mobilites.ashibi.jp/200/index.html" target="_blank" rel="noopener noreferrer"
-                class="map-btn">
-                スタンプラリーをはじめる
-            </a>
-        </div>
     </main>
     <div class="bg-decorations">
         <img src="../images/header_gradation.png" alt="" class="decor-img header-grad">
     </div>
+
+
+    <!-- ▼ エリア詳細ポップアップ（全エリア共通） ▼ -->
+    <div id="areaPopupOverlay" class="area-popup-overlay">
+        <div class="area-popup-content">
+            <button class="area-popup-close" id="closeAreaPopupBtn">&times;</button>
+
+            <!-- ▼ idを追加して、JSで中身を書き換える -->
+            <h2 class="area-popup-title" id="popupTitle">エリア名</h2>
+
+            <div class="area-map-container">
+                <img src="" width="368" height="auto" alt="エリアマップ" class="area-map-img" id="popupMap">
+            </div>
+
+            <div class="area-info-container">
+                <div class="area-info-text">
+                    <p id="popupLevel">難易度：</p>
+                    <p id="popupInfo">目安時間 / 距離：</p>
+                    <p id="popupCount">彫刻数：</p>
+                </div>
+            </div>
+
+            <div class="area-start-btn-container">
+                <a href="#" target="_blank" rel="noopener noreferrer" class="area-start-btn" id="popupLink">
+                    <span class="btn-top-text">スタンプラリーを始める</span>
+                    <span class="btn-sub-text">まずは<span class="btn-highlight" id="popupStation">駅名</span>へ！</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- ▲ エリア詳細ポップアップ ▲ -->
+    <script src="../js/selectarea.js"></script>
 </body>
 
 </html>
