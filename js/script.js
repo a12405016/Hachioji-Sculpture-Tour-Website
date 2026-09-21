@@ -107,7 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
         mapImages.forEach(img => {
             img.addEventListener('click', () => {
                 modal.classList.add('show');
-                modalImg.src = img.src;
+
+                // ▼ ここを修正：data-large が設定されていればそれを使い、無ければ通常のsrcを使う
+                modalImg.src = img.dataset.large || img.src;
             });
         });
 
@@ -139,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
     };
 
-    // 各エリアの設定（今後エリアが増えたらここに追加するだけでOKです）
+    // 各エリアの設定
     const archiveAreas = [
         {
             id: 'card-hachioji',
@@ -150,6 +152,46 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'card-katakura',
             storageKey: 'katakuraUnlocked',
             url: 'html/archive_katakura.html'
+        },
+        {
+            id: 'card-kitahachioji',
+            storageKey: 'kitahachiojiUnlocked',
+            url: 'html/archive_kitahachioji.html'
+        },
+        {
+            id: 'card-nishihachioji',
+            storageKey: 'nishihachiojiUnlocked',
+            url: 'html/archive_nishihachioji.html'
+        },
+        {
+            id: 'card-hachiojisiyakusyo',
+            storageKey: 'hachiojisiyakusyoUnlocked',
+            url: 'html/archive_hachiojisiyakusyo.html'
+        },
+        {
+            id: 'card-takao',
+            storageKey: 'takaoUnlocked',
+            url: 'html/archive_takao.html'
+        },
+        {
+            id: 'card-kitano',
+            storageKey: 'kitanoUnlocked',
+            url: 'html/archive_kitano.html'
+        },
+        {
+            id: 'card-tamacenter',
+            storageKey: 'tamacenterUnlocked',
+            url: 'html/archive_tamacenter.html'
+        },
+        {
+            id: 'card-minamiosawa',
+            storageKey: 'minamiosawaUnlocked',
+            url: 'html/archive_minamiosawa.html'
+        },
+        {
+            id: 'card-others',
+            storageKey: 'othersUnlocked',
+            url: 'html/archive_others.html'
         }
     ];
 

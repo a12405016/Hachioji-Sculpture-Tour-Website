@@ -12,6 +12,10 @@
     <title>エリア選択_八王子市彫刻巡りスタンプラリー</title>
     <link rel="stylesheet" href="../css/selectarea.css">
     <link rel="icon" href="../images/herofavicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -28,48 +32,62 @@
 
         <div class="map-container">
             <img src="../images/areamap.png" alt="八王子市全体のエリアマップ" class="map-image">
+
             <div class="map-area-buttons" aria-label="エリアを選択">
                 <button class="map-area other" type="button" data-title="その他エリア"
-                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆" data-info="約60分 / 1.8km"
-                    data-count="11箇所" data-station="市役所付近"
+                    data-map="../images/arae-select/others-map.png" data-level="★★★★★" data-info="約60分 / 5.0km 🚲"
+                    data-count="5箇所" data-station="市役所付近"
                     data-link="https://app.mobilites.ashibi.jp/200/index.html">その他エリア</button>
+
                 <button class="map-area city-hall" type="button" data-title="市役所エリア"
-                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆" data-info="約60分 / 1.8km"
-                    data-count="11箇所" data-station="市役所"
+                    data-map="../images/arae-select/hachiojishiyakusyo-map.png" data-level="★★☆☆☆"
+                    data-info="約45分 / 1.5km 🚶" data-count="10箇所" data-station="市役所"
                     data-link="https://app.mobilites.ashibi.jp/200/index.html">市役所エリア</button>
+
                 <button class="map-area kita-hachioji" type="button" data-title="北八王子エリア"
-                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆" data-info="約60分 / 1.8km"
-                    data-count="11箇所" data-station="北八王子駅"
+                    data-map="../images/arae-select/kitahachioji-map.png" data-level="★★★★☆" data-info="約30分 / 2.5km 🚲"
+                    data-count="5箇所" data-station="北八王子駅"
                     data-link="https://app.mobilites.ashibi.jp/200/index.html">北八王子エリア</button>
+
                 <button class="map-area hachioji-station" type="button" data-title="八王子駅エリア"
                     data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆"
-                    data-info="約60分 / 1.8km 🚶" data-count="11箇所" data-station="八王子駅"
+                    data-info="約60分 / 2.2km 🚶" data-count="11箇所" data-station="八王子駅"
                     data-link="https://app.mobilites.ashibi.jp/200/index.html">八王子駅エリア</button>
+
                 <button class="map-area nishi-hachioji" type="button" data-title="西八王子エリア"
-                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆"
-                    data-info="約60分 / 1.8km 🚶" data-count="11箇所" data-station="西八王子駅"
+                    data-map="../images/arae-select/nishihachioji-map.png" data-level="★★★☆☆"
+                    data-info="約55分 / 2.5km 🚶" data-count="8箇所" data-station="西八王子駅"
                     data-link="https://app.mobilites.ashibi.jp/200/index.html">西八王子エリア</button>
+
                 <button class="map-area takao" type="button" data-title="高尾エリア"
-                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆"
-                    data-info="約60分 / 1.8km 🚶" data-count="11箇所" data-station="高尾駅"
+                    data-map="../images/arae-select/takao-map.png" data-level="★★★★☆" data-info="約40分 / 4.0km 🚲"
+                    data-count="5箇所" data-station="高尾駅"
                     data-link="https://app.mobilites.ashibi.jp/200/index.html">高尾エリア</button>
+
                 <button class="map-area katakura" type="button" data-title="片倉エリア"
-                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆"
-                    data-info="約30分 / 1.8km 🚶" data-count="11箇所" data-station="片倉駅"
+                    data-map="../images/arae-select/katakura-map.png" data-level="★☆☆☆☆" data-info="約30分 / 1.5km 🚶"
+                    data-count="19箇所" data-station="片倉駅"
                     data-link="https://app.mobilites.ashibi.jp/200/index.html">片倉エリア</button>
+
                 <button class="map-area kitano" type="button" data-title="北野エリア"
-                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆"
-                    data-info="約60分 / 1.8km 🚲" data-count="11箇所" data-station="北野駅"
+                    data-map="../images/arae-select/kitano-map.png" data-level="★★★★☆" data-info="約50分 / 3.5km 🚲"
+                    data-count="4箇所" data-station="北野駅"
                     data-link="https://app.mobilites.ashibi.jp/200/index.html">北野エリア</button>
+
                 <button class="map-area tama-center" type="button" data-title="多摩センターエリア"
-                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆"
-                    data-info="約60分 / 1.8km 🚶" data-count="11箇所" data-station="多摩センター駅"
+                    data-map="../images/arae-select/tamacenter-map.png" data-level="★★☆☆☆" data-info="約40分 / 1.5km 🚶"
+                    data-count="4箇所" data-station="多摩センター駅"
                     data-link="https://app.mobilites.ashibi.jp/200/index.html">多摩センター<br>エリア</button>
+
                 <button class="map-area minami-osawa" type="button" data-title="南大沢エリア"
-                    data-map="../images/arae-select/hachiohistation-map.png" data-level="★★★☆☆"
-                    data-info="約60分 / 1.8km 🚶" data-count="11箇所" data-station="南大沢駅"
+                    data-map="../images/arae-select/minamiosawa-map.png" data-level="★★★☆☆" data-info="約60分 / 3.0km 🚶"
+                    data-count="8箇所" data-station="南大沢駅"
                     data-link="https://app.mobilites.ashibi.jp/200/index.html">南大沢エリア</button>
             </div>
+        </div>
+
+        <div class="map-area-info">
+            <p>参照：彫刻のまちづくり まちは大きな美術館-八王子彫刻フォトマップ-</p>
         </div>
 
         <div class="button-wrapper">

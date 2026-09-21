@@ -210,8 +210,8 @@ header h1 {
 }
 
 .kitano {
-    top: 66%;
-    left: 62%;
+    top: 60%;
+    left: 66%;
 }
 
 .tama-center {
@@ -337,11 +337,11 @@ header h1 {
 }
 
 .area-info-text p {
-    font-size: 11px;
+    font-size: 13px;
     color: #552D19;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: 0.5px;
-    font-family: "vdl-megamaru", "VDL-MegaMaru", "VDL メガ丸", sans-serif;
+    font-family: "Zen Maru Gothic", "vdl-megamaru", "VDL-MegaMaru", "VDL メガ丸", sans-serif;
     text-align: left;
 }
 
@@ -396,10 +396,16 @@ header h1 {
 
 
 
-
 /*=========================================================
 #戻るボタン
 =========================================================*/
+
+.map-area-info {
+    margin-top: 30px;
+    font-size: 11px;
+    color: #000;
+    text-align: center;
+}
 
 .button-wrapper {
     margin-top: auto;
