@@ -226,9 +226,9 @@ window.addEventListener("DOMContentLoaded", () => {
         animation: sealPop 0.7s cubic-bezier(0.2, 1.5, 0.4, 1) 0.25s backwards;
     }
     .complete-seal .seal-main {
-        font-size: 15px;
+        font-size: 10px;
         font-weight: bold;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.04em;
         line-height: 1;
     }
     .complete-seal .seal-sub {
