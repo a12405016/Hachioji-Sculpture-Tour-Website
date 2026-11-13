@@ -11,6 +11,7 @@ const TOTAL_ITEMS = 7;
 const SCULPTURES = [
         {
         id: 1,
+        audio: "../narration/hachioji_nishi/file_26.mp3",
         name: "風祭",
         image: "../images/archive-nishihachioji/14. Wind Festival.png",
         area: "西八王子エリア",
@@ -21,16 +22,18 @@ const SCULPTURES = [
     },
         {
         id: 2,
+        audio: "../narration/hachioji_nishi/file_27_change.mp3",
         name: "風の標識No.2",
         image: "../images/archive-nishihachioji/15. Wind Sign No.2.png",
         area: "西八王子エリア",
         author: "大成 浩",
-        story: "捌王子file.27　風祭を最初に取り仕切り行ったのは、この地をさる前の六男だと言われています．そのころはまだ風祭という名前はなく、六男のいなくなった地を治める王を競技で取り決める祭でした。この彫刻は第一回目の際の競技に使われたものです。六男は王になるためにおとづれた人々に最初にこの彫刻を飛び越えさせて、速く美しく、そして力強く飛んだものだけを競技に参加させたと言われています．",
+        story: "捌王子file.27　風祭を最初に取り仕切り行ったのは、この地をさる前の神様だと言われています．そのころはまだ風祭という名前はなく、純粋に肉体の能力を競い合う祭でした。この彫刻は第一回目のまつりの競技に使われたものです。神様はこの地を訪れた人々に最初にこの彫刻を飛び越えさせて、速く美しく、そして力強く飛んだものだけを競技に参加させたと言われています．",
         link: "https://www.city.hachioji.tokyo.jp/kurashi/shimin/005/002/002/p000017.html",
         keyword: "しるし"
     },
     {
         id: 3,
+        audio: "../narration/hachioji_nishi/file_28.mp3",
         name: "大地",
         image: "../images/archive-nishihachioji/12. The Earth.png",
         area: "西八王子エリア",
@@ -41,6 +44,7 @@ const SCULPTURES = [
     },
     {
         id: 4,
+        audio: "../narration/hachioji_nishi/file_28.mp3",
         name: "私の影（IDENTITY）",
         image: "../images/archive-nishihachioji/13. My Shadow (IDENTITY).png",
         area: "西八王子エリア",
@@ -51,6 +55,7 @@ const SCULPTURES = [
     },
     {
         id: 5,
+        audio: "../narration/hachioji_nishi/file_29.mp3",
         name: "メイドン・ボエジ",
         image: "../images/archive-nishihachioji/17. Maiden Voyage.png",
         area: "西八王子エリア",
@@ -61,6 +66,7 @@ const SCULPTURES = [
     },
     {
         id: 6,
+        audio: "../narration/hachioji_nishi/file_30.mp3",
         name: "無題",
         image: "../images/archive-nishihachioji/18. Untitled.png",
         area: "西八王子エリア",
@@ -71,7 +77,7 @@ const SCULPTURES = [
     },
     {
         id: 7,
-        name: "風拓No.4",
+        audio: "../narration/hachioji_nishi/file_31.mp3",        name: "風拓No.4",
         image: "../images/archive-nishihachioji/16. Wind Carving No.4.png",
         area: "西八王子エリア",
         author: "大成 浩",
@@ -80,3 +86,5 @@ const SCULPTURES = [
         keyword: "ふう"
     }
 ];
+// 音声ガイド共通処理
+(function(){const folder='hachioji_nishi';const a=document.getElementById('popAudio'),b=document.getElementById('audioPlayButton');if(!a||!b)return;const special={'hachioji_nishi/27':'file_27_change.mp3','hachioji_nishi/33':'file_33_change.mp3','other/1':'file_1a.mp3','other/2':'file_2a.mp3','other/3':'fie_3a.mp3','other/4':'file_4a_rewrite.mp3','other/5':'file_5a.mp3'};const reset=()=>{a.pause();a.currentTime=0;b.textContent='▶';b.classList.remove('is-pause');b.classList.add('is-play');};const original=window.openPopup;window.openPopup=function(id){original(id);const s=SCULPTURES.find(x=>x.id===id),m=(s.story||'').match(/file\.?\s*(\d+)/i);if(!m)return;let n=s.audio||'../narration/'+folder+'/file_'+m[1]+'.mp3';if(special[folder+'/'+m[1]])n='../narration/'+folder+'/'+special[folder+'/'+m[1]];if(folder==='hachioji_kita'&&m[1]==='46')n='../narration/hachioji_kita/filer_46.mp3';reset();a.src=n;a.load();};b.onclick=async()=>{if(!a.src)return;if(a.paused){try{await a.play()}catch(e){console.error('音声の再生に失敗しました:',a.src,e)}}else a.pause()};a.onplay=()=>{b.textContent='Ⅱ';b.classList.remove('is-play');b.classList.add('is-pause')};a.onpause=()=>{if(!a.ended){b.textContent='▶';b.classList.remove('is-pause');b.classList.add('is-play')}};a.onended=reset;a.onerror=()=>console.error('音声ファイルを読み込めませんでした:',a.src);const close=window.closePopup;window.closePopup=function(){reset();close()}})();

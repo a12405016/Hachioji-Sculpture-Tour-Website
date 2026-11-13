@@ -1,16 +1,18 @@
 
-// 解放済みの彫刻IDを保存するためのキー　各エリアで修正する必要あり
+// 解放済みの彫刻IDを保存するためのキー
 const STORAGE_KEY = "katakura-unlocked-area";
 let unlockedSet = new Set();
 
+// ページが開かれたら解放フラグを保存
+localStorage.setItem("katakuraUnlocked", "true");
 
-// ページが開かれたら解放フラグを保存　各エリアの彫刻についても修正する必要あり
-localStorage.setItem('katakuraUnlocked', 'true');
 // 彫刻データ
 const TOTAL_ITEMS = 19;
+
 const SCULPTURES = [
     {
         id: 1,
+        audio: "../narration/katakura/file_11.mp3",
         name: "浦島-長寿の舞",
         image: "../images/archive-katakura/38. Urashima - Dance of Longevity.png",
         area: "片倉エリア",
@@ -21,6 +23,7 @@ const SCULPTURES = [
     },
     {
         id: 2,
+        audio: "../narration/katakura/file_12.mp3",
         name: "貌",
         image: "../images/archive-katakura/40. Face.png",
         area: "片倉エリア",
@@ -31,6 +34,7 @@ const SCULPTURES = [
     },
     {
         id: 3,
+        audio: "../narration/katakura/file_13.mp3",
         name: "希望",
         image: "../images/archive-katakura/41. Hope.png",
         area: "片倉エリア",
@@ -41,6 +45,7 @@ const SCULPTURES = [
     },
     {
         id: 4,
+        audio: "../narration/katakura/file_14.mp3",
         name: "酔っぱらい",
         image: "../images/archive-katakura/42. Drunkard.png",
         area: "片倉エリア",
@@ -51,6 +56,7 @@ const SCULPTURES = [
     },
     {
         id: 5,
+        audio: "../narration/katakura/file_15.mp3",
         name: "春風",
         image: "../images/archive-katakura/43. Spring Breeze.png",
         area: "片倉エリア",
@@ -61,6 +67,7 @@ const SCULPTURES = [
     },
     {
         id: 6,
+        audio: "../narration/katakura/file_16.mp3",
         name: "独",
         image: "../images/archive-katakura/44. Solitude.png",
         area: "片倉エリア",
@@ -71,6 +78,7 @@ const SCULPTURES = [
     },
     {
         id: 7,
+        audio: "../narration/katakura/file_17.mp3",
         name: "春を感じて",
         image: "../images/archive-katakura/45. Feeling Spring.png",
         area: "片倉エリア",
@@ -81,6 +89,7 @@ const SCULPTURES = [
     },
     {
         id: 8,
+        audio: "../narration/katakura/file_18.mp3",
         name: "少年",
         image: "../images/archive-katakura/46. Boy.png",
         area: "片倉エリア",
@@ -91,6 +100,7 @@ const SCULPTURES = [
     },
     {
         id: 9,
+        audio: "../narration/katakura/file_19.mp3",
         name: "雪の朝",
         image: "../images/archive-katakura/47. Snowy Morning.png",
         area: "片倉エリア",
@@ -101,6 +111,7 @@ const SCULPTURES = [
     },
     {
         id: 10,
+        audio: "../narration/katakura/file_20.mp3",
         name: "憧れ",
         image: "../images/archive-katakura/49. Yearning.png",
         area: "片倉エリア",
@@ -111,6 +122,7 @@ const SCULPTURES = [
     },
     {
         id: 11,
+        audio: "../narration/katakura/file_21.mp3",
         name: "アテネの戦士",
         image: "../images/archive-katakura/50. Warrior of Athens.png",
         area: "片倉エリア",
@@ -121,6 +133,7 @@ const SCULPTURES = [
     },
     {
         id: 12,
+        audio: "../narration/katakura/file_22.mp3",
         name: "風景-海-",
         image: "../images/archive-katakura/51. Landscape -Sea-.png",
         area: "片倉エリア",
@@ -129,8 +142,9 @@ const SCULPTURES = [
         link: "https://www.city.hachioji.tokyo.jp/kurashi/shimin/005/002/002/p000020.html",
         keyword: "うみ"
     },
-        {
+    {
         id: 13,
+        audio: "../narration/katakura/file_23.mp3",
         name: "春休み",
         image: "../images/archive-katakura/56. Spring Break.png",
         area: "片倉エリア",
@@ -141,6 +155,7 @@ const SCULPTURES = [
     },
     {
         id: 14,
+        audio: "../narration/katakura/file_24.mp3",
         name: "ダナエ",
         image: "../images/archive-katakura/54. Danae.png",
         area: "片倉エリア",
@@ -151,6 +166,7 @@ const SCULPTURES = [
     },
     {
         id: 15,
+        audio: "../narration/katakura/file_25.mp3",
         name: "長い髪",
         image: "../images/archive-katakura/55. Long Hair.png",
         area: "片倉エリア",
@@ -159,8 +175,9 @@ const SCULPTURES = [
         link: "https://www.city.hachioji.tokyo.jp/kurashi/shimin/005/002/002/p000020.html",
         keyword: "かみ"
     },
-        {
+    {
         id: 16,
+        audio: "../narration/katakura/other_2.mp3",
         name: "西望自刻像",
         image: "../images/archive-katakura/39. Seibo_s Self-Portrait.png",
         area: "片倉エリア",
@@ -169,8 +186,9 @@ const SCULPTURES = [
         link: "https://www.city.hachioji.tokyo.jp/kurashi/shimin/005/002/002/p000020.html",
         keyword: "せいぼう"
     },
-        {
+    {
         id: 17,
+        audio: "../narration/katakura/other_3.mp3",
         name: "早く来ないかなあ",
         image: "../images/archive-katakura/53. I Wonder When They_ll Come.png",
         area: "片倉エリア",
@@ -179,8 +197,9 @@ const SCULPTURES = [
         link: "https://www.city.hachioji.tokyo.jp/kurashi/shimin/005/002/002/p000020.html",
         keyword: "はやく"
     },
-        {
+    {
         id: 18,
+        audio: "../narration/katakura/other_4.mp3",
         name: "ダンシングオールナイト",
         image: "../images/archive-katakura/48. Dancing All Night.png",
         area: "片倉エリア",
@@ -189,8 +208,9 @@ const SCULPTURES = [
         link: "https://www.city.hachioji.tokyo.jp/kurashi/shimin/005/002/002/p000020.html",
         keyword: "ダンス"
     },
-        {
+    {
         id: 19,
+        audio: "../narration/katakura/other_5.mp3",
         name: "夢につつまれて",
         image: "../images/archive-katakura/52. Wrapped in Dreams.png",
         area: "片倉エリア",
@@ -198,5 +218,288 @@ const SCULPTURES = [
         story: "otherfile.5　古代期の捌王子では、八王子の合理的な考えも広まっていましたが、当時の人々は、数世代前の人々が、神が実際に地上に存在していた時代を目撃していたので、まだまだ神聖なちからを信じていました。中でも眠っている間に見る夢は、神からの啓示だと思われていて、この像は人々に啓示を夢として運ぶ神を示したものと言われています。我々の目には見えないそれを、目一杯抱え運んでいる姿を想像できます。",
         link: "https://www.city.hachioji.tokyo.jp/kurashi/shimin/005/002/002/p000020.html",
         keyword: "ねむり"
-    },
+    }
 ];
+
+// 各彫刻の音声ファイルを設定
+SCULPTURES.forEach(item => {
+});
+
+
+// ------------------------------
+// 解放データの読み込み・保存
+// ------------------------------
+
+function loadUnlocked() {
+    try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        return saved ? new Set(JSON.parse(saved)) : new Set();
+    } catch (error) {
+        console.error("解放データの読み込みに失敗しました:", error);
+        return new Set();
+    }
+}
+
+function saveUnlocked(set) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...set]));
+}
+
+
+// ------------------------------
+// 音声再生処理
+// ------------------------------
+
+const audio = document.getElementById("popAudio");
+const audioButton = document.getElementById("audioPlayButton");
+
+function updateAudioButton(isPlaying) {
+    if (!audioButton) return;
+
+    audioButton.textContent = isPlaying ? "Ⅱ" : "▶";
+
+    audioButton.classList.toggle("is-play", !isPlaying);
+    audioButton.classList.toggle("is-pause", isPlaying);
+
+    audioButton.setAttribute(
+        "aria-label",
+        isPlaying ? "音声を一時停止" : "音声を再生"
+    );
+
+    audioButton.title = isPlaying ? "音声を一時停止" : "音声を再生";
+}
+
+function stopAudio() {
+    if (!audio) return;
+
+    audio.pause();
+    audio.currentTime = 0;
+    audio.removeAttribute("src");
+    audio.load();
+
+    updateAudioButton(false);
+}
+
+if (audioButton && audio) {
+    audioButton.onclick = async () => {
+        if (!audio.src) return;
+
+        if (audio.paused) {
+            try {
+                await audio.play();
+            } catch (error) {
+                console.error("音声を再生できませんでした:", error);
+                showToast("音声を再生できませんでした。");
+            }
+        } else {
+            audio.pause();
+        }
+    };
+
+    audio.addEventListener("play", () => {
+        updateAudioButton(true);
+    });
+
+    audio.addEventListener("pause", () => {
+        updateAudioButton(false);
+    });
+
+    audio.addEventListener("ended", () => {
+        audio.currentTime = 0;
+        updateAudioButton(false);
+    });
+}
+
+
+// ------------------------------
+// トースト表示
+// ------------------------------
+
+function showToast(message) {
+    const toast = document.getElementById("toast");
+    if (!toast) return;
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2500);
+}
+
+
+// ------------------------------
+// ポップアップ表示
+// ------------------------------
+
+function openPopup(id) {
+    const item = SCULPTURES.find(s => s.id === id);
+    if (!item) return;
+
+    const titleRow = document.querySelector("#popup .popup-title-row");
+    if (titleRow) titleRow.classList.toggle("audio-long-title", id === 17 || id === 18);
+
+    // 前の彫刻の音声を停止
+    stopAudio();
+
+    // 音声ファイルを設定
+    if (audio) {
+        audio.src = new URL(item.audio, document.baseURI).href;
+        audio.load();
+        audioButton.disabled = false;
+    }
+
+    // ポップアップ内容を設定
+    document.getElementById("popNo").textContent = `No.${item.id}`;
+    document.getElementById("popTitle").textContent = item.name;
+    document.getElementById("popImg").src = item.image;
+    document.getElementById("popImg").alt = item.name;
+    document.getElementById("popArea").textContent = item.area;
+    document.getElementById("popAuthor").textContent = item.author;
+    document.getElementById("popStory").textContent = item.story;
+    document.getElementById("popLink").href = item.link;
+
+    updateAudioButton(false);
+
+    document.getElementById("popupOverlay").classList.add("show");
+    document.getElementById("popup").classList.add("show");
+}
+
+
+// ------------------------------
+// ポップアップを閉じる
+// ------------------------------
+
+function closePopup() {
+    // 音声を停止してリセット
+    stopAudio();
+
+    document.getElementById("popupOverlay").classList.remove("show");
+    document.getElementById("popup").classList.remove("show");
+}
+
+
+// ------------------------------
+// スタンプ一覧の表示
+// ------------------------------
+
+function renderGrid() {
+    const grid = document.getElementById("grid");
+    if (!grid) return;
+
+    grid.innerHTML = "";
+
+    SCULPTURES.forEach(s => {
+        const div = document.createElement("div");
+
+        if (unlockedSet.has(s.id)) {
+            div.className = "stamp-item unlocked";
+            div.addEventListener("click", () => openPopup(s.id));
+
+            div.innerHTML = `
+                <div class="stamp-no">No.${s.id}</div>
+                <img class="unlocked-img" src="${s.image}" alt="${s.name}">
+            `;
+        } else {
+            div.className = "stamp-item locked";
+            div.addEventListener("click", () => {
+                showToast("未解放です！");
+            });
+
+            div.innerHTML = `
+                <div class="stamp-no">No.${s.id}</div>
+                <img src="../images/archive_lockicon.png"
+                     alt="未解放"
+                     width="114">
+            `;
+        }
+
+        grid.appendChild(div);
+    });
+
+    // 進捗表示
+    const count = unlockedSet.size;
+    const progressCount = document.getElementById("progressCount");
+    const progressFill = document.getElementById("progressFill");
+    const progressContainer = document.querySelector(".progress-bar-container");
+
+    if (progressCount) {
+        progressCount.textContent = `${count} / ${TOTAL_ITEMS}`;
+    }
+
+    if (progressFill) {
+        progressFill.style.width = `${(count / TOTAL_ITEMS) * 100}%`;
+    }
+
+    // 全作品解放時の演出
+    if (count === TOTAL_ITEMS) {
+        if (progressFill) progressFill.classList.add("completed");
+        if (progressContainer) progressContainer.classList.add("completed");
+        const celebrationKey = STORAGE_KEY + "-celebrated";
+        const isNew = localStorage.getItem(celebrationKey) !== "true";
+
+        if (isNew) {
+            localStorage.setItem(celebrationKey, "true");
+
+            if (typeof window.celebrateCompletion === "function") {
+                window.celebrateCompletion(true);
+            }
+        } else {
+            if (typeof window.clearCompletionEffect === "function") {
+                window.clearCompletionEffect();
+            }
+        }
+    } else {
+        if (progressFill) progressFill.classList.remove("completed");
+        if (progressContainer) progressContainer.classList.remove("completed");
+        if (typeof window.clearCompletionEffect === "function") {
+            window.clearCompletionEffect();
+        }
+    }
+}
+
+
+// ------------------------------
+// ページ読み込み時の処理
+// ------------------------------
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    // 保存済みの解放情報を読み込む
+    unlockedSet = loadUnlocked();
+
+    // スタンプ一覧を表示
+    renderGrid();
+
+    // URLの ?unlock=番号 を取得
+    const params = new URLSearchParams(window.location.search);
+    const unlockId = parseInt(params.get("unlock"), 10);
+
+    if (
+        !Number.isNaN(unlockId) &&
+        unlockId >= 1 &&
+        unlockId <= TOTAL_ITEMS &&
+        !unlockedSet.has(unlockId)
+    ) {
+        const targetItem = SCULPTURES.find(s => s.id === unlockId);
+
+        if (targetItem) {
+            const input = prompt(
+                `【${targetItem.name}】\n現地にある「ひみつのキーワード」を入力してください：`
+            );
+
+            if (input === targetItem.keyword) {
+                unlockedSet.add(unlockId);
+
+                saveUnlocked(unlockedSet);
+                renderGrid();
+
+                setTimeout(() => {
+                    showToast(`${targetItem.name} が解放されました！`);
+                }, 300);
+
+            } else if (input !== null && input !== "") {
+                alert("キーワードが違います。現地で確認してもう一度お試しください。");
+            }
+        }
+    }
+});

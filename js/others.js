@@ -10,6 +10,7 @@ const TOTAL_ITEMS = 5;
 const SCULPTURES = [
         {
         id: 1,
+        audio: "../narration/other/file_1a.mp3",
         name: "燈標",
         image: "../images/archive-others/79. Light Beacon.png",
         area: "その他エリア",
@@ -20,6 +21,7 @@ const SCULPTURES = [
     },
     {
         id: 2,
+        audio: "../narration/other/file_2a.mp3",
         name: "地平線の記憶",
         image: "../images/archive-others/78. Memory of the Horizon.png",
         area: "その他エリア",
@@ -30,6 +32,7 @@ const SCULPTURES = [
     },
     {
         id: 3,
+        audio: "../narration/other/fie_3a.mp3",
         name: "時間塊",
         image: "../images/archive-others/80. Time Mass.png",
         area: "その他エリア",
@@ -40,7 +43,7 @@ const SCULPTURES = [
     },
         {
         id: 4,
-        name: "太陽の風景－9.",
+        audio: "../narration/other/file_4a_rewrite.mp3",        name: "太陽の風景－9.",
         image: "../images/archive-others/82. Landscape of the Sun -9.png",
         area: "その他エリア",
         author: "藁谷 収",
@@ -50,6 +53,7 @@ const SCULPTURES = [
     },
     {
         id: 5,
+        audio: "../narration/other/file_5a.mp3",
         name: "風の中の母子",
         image: "../images/archive-others/81. Mother and Child in the Wind.png",
         area: "その他エリア",
@@ -59,3 +63,5 @@ const SCULPTURES = [
         keyword: "おやこ"
     },
 ];
+// 音声ガイド共通処理
+(function(){const folder='other';const a=document.getElementById('popAudio'),b=document.getElementById('audioPlayButton');if(!a||!b)return;const special={'other/27':'file_27_change.mp3','other/33':'file_33_change.mp3','other/1':'file_1a.mp3','other/2':'file_2a.mp3','other/3':'fie_3a.mp3','other/4':'file_4a_rewrite.mp3','other/5':'file_5a.mp3'};const reset=()=>{a.pause();a.currentTime=0;b.textContent='▶';b.classList.remove('is-pause');b.classList.add('is-play');};const original=window.openPopup;window.openPopup=function(id){original(id);const s=SCULPTURES.find(x=>x.id===id),m=(s.story||'').match(/file\.?\s*(\d+)/i);if(!m)return;let n=s.audio||'../narration/'+folder+'/file_'+m[1]+'.mp3';if(special[folder+'/'+m[1]])n='../narration/'+folder+'/'+special[folder+'/'+m[1]];if(folder==='hachioji_kita'&&m[1]==='46')n='../narration/hachioji_kita/filer_46.mp3';reset();a.src=n;a.load();};b.onclick=async()=>{if(!a.src)return;if(a.paused){try{await a.play()}catch(e){console.error('音声の再生に失敗しました:',a.src,e)}}else a.pause()};a.onplay=()=>{b.textContent='Ⅱ';b.classList.remove('is-play');b.classList.add('is-pause')};a.onpause=()=>{if(!a.ended){b.textContent='▶';b.classList.remove('is-pause');b.classList.add('is-play')}};a.onended=reset;a.onerror=()=>console.error('音声ファイルを読み込めませんでした:',a.src);const close=window.closePopup;window.closePopup=function(){reset();close()}})();

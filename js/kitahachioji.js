@@ -11,6 +11,7 @@ const TOTAL_ITEMS = 4;
 const SCULPTURES = [
     {
         id: 1,
+        audio: "../narration/hachioji_kita/file_44.mp3",
         name: "二つの笑い",
         image: "../images/archive-kitahachioji/74. Two Smiles.png",
         area: "北八王子エリア",
@@ -21,6 +22,7 @@ const SCULPTURES = [
     },
     {
         id: 2,
+        audio: "../narration/hachioji_kita/file_45.mp3",
         name: "石の歌",
         image: "../images/archive-kitahachioji/75. Song of Stone.png",
         area: "北八王子エリア",
@@ -31,6 +33,7 @@ const SCULPTURES = [
     },
         {
         id: 3,
+        audio: "../narration/hachioji_kita/filer_46.mp3",
         name: "デッサン",
         image: "../images/archive-kitahachioji/77. Dessin.png",
         area: "北八王子エリア",
@@ -41,6 +44,7 @@ const SCULPTURES = [
     },
     {
         id: 4,
+        audio: "../narration/hachioji_kita/file_47.mp3",
         name: "慈",
         image: "../images/archive-kitahachioji/76. Mercy.png",
         area: "北八王子エリア",
@@ -50,3 +54,5 @@ const SCULPTURES = [
         keyword: "めぐみ"
     },
 ];
+// 音声ガイド共通処理
+(function(){const folder='hachioji_kita';const a=document.getElementById('popAudio'),b=document.getElementById('audioPlayButton');if(!a||!b)return;const special={'hachioji_kita/27':'file_27_change.mp3','hachioji_kita/33':'file_33_change.mp3','other/1':'file_1a.mp3','other/2':'file_2a.mp3','other/3':'fie_3a.mp3','other/4':'file_4a_rewrite.mp3','other/5':'file_5a.mp3'};const reset=()=>{a.pause();a.currentTime=0;b.textContent='▶';b.classList.remove('is-pause');b.classList.add('is-play');};const original=window.openPopup;window.openPopup=function(id){original(id);const s=SCULPTURES.find(x=>x.id===id),m=(s.story||'').match(/file\.?\s*(\d+)/i);if(!m)return;let n=s.audio||'../narration/'+folder+'/file_'+m[1]+'.mp3';if(special[folder+'/'+m[1]])n='../narration/'+folder+'/'+special[folder+'/'+m[1]];if(folder==='hachioji_kita'&&m[1]==='46')n='../narration/hachioji_kita/filer_46.mp3';reset();a.src=n;a.load();};b.onclick=async()=>{if(!a.src)return;if(a.paused){try{await a.play()}catch(e){console.error('音声の再生に失敗しました:',a.src,e)}}else a.pause()};a.onplay=()=>{b.textContent='Ⅱ';b.classList.remove('is-play');b.classList.add('is-pause')};a.onpause=()=>{if(!a.ended){b.textContent='▶';b.classList.remove('is-pause');b.classList.add('is-play')}};a.onended=reset;a.onerror=()=>console.error('音声ファイルを読み込めませんでした:',a.src);const close=window.closePopup;window.closePopup=function(){reset();close()}})();

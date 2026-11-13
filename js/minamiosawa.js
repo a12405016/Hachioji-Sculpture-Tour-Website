@@ -10,6 +10,7 @@ const TOTAL_ITEMS = 9;
 const SCULPTURES = [
         {
         id: 1,
+        audio: "../narration/tama_minami/file_58.mp3",
         name: "千年の道",
         image: "../images/archive-minamiosawa/62. Path of a Thousand Years.png",
         area: "南大沢エリア",
@@ -20,6 +21,7 @@ const SCULPTURES = [
     },
     {
         id: 2,
+        audio: "../narration/tama_minami/file_59.mp3",
         name: "直径24000mmの円周上における1対2対4対の弦",
         image: "../images/archive-minamiosawa/61. Chords.png",
         area: "南大沢エリア",
@@ -30,6 +32,7 @@ const SCULPTURES = [
     },
     {
         id: 3,
+        audio: "../narration/tama_minami/file_60.mp3",
         name: "みどりの風",
         image: "../images/archive-minamiosawa/63. Green Wind.png",
         area: "南大沢エリア",
@@ -40,6 +43,7 @@ const SCULPTURES = [
     },
     {
         id: 4,
+        audio: "../narration/tama_minami/file_61.mp3",
         name: " 夏至の日のLand-Mark(八王子）",
         image: "../images/archive-minamiosawa/66. Land-Mark on the Summer Solstice (Hachioji).png",
         area: "南大沢エリア",
@@ -50,6 +54,7 @@ const SCULPTURES = [
     },
     {
         id: 5,
+        audio: "../narration/tama_minami/file_62.mp3",
         name: "風の標識No.42",
         image: "../images/archive-minamiosawa/68. Wind Sign No.42.png",
         area: "南大沢エリア",
@@ -60,6 +65,7 @@ const SCULPTURES = [
     },
     {
         id: 6,
+        audio: "../narration/tama_minami/file_63.mp3",
         name: "記憶の尻尾",
         image: "../images/archive-minamiosawa/69. Tail of Memory.png",
         area: "南大沢エリア",
@@ -70,6 +76,7 @@ const SCULPTURES = [
     },
         {
         id: 7,
+        audio: "../narration/tama_minami/other_11.mp3",
         name: "集いの詩",
         image: "../images/archive-minamiosawa/64. Poetry of Gathering.png",
         area: "南大沢エリア",
@@ -80,6 +87,7 @@ const SCULPTURES = [
     },
         {
         id: 8,
+        audio: "../narration/tama_minami/other_12.mp3",
         name: "風に立つ",
         image: "../images/archive-minamiosawa/65. Standing in the Wind.png",
         area: "南大沢エリア",
@@ -90,6 +98,7 @@ const SCULPTURES = [
     },
         {
         id: 9,
+        audio: "../narration/tama_minami/other_13.mp3",
         name: "化石",
         image: "../images/archive-minamiosawa/67. Fossil.png",
         area: "南大沢エリア",
@@ -99,3 +108,5 @@ const SCULPTURES = [
         keyword: "かせき"
     },
 ];
+// 音声ガイド共通処理
+(function(){const folder='tama_minami';const a=document.getElementById('popAudio'),b=document.getElementById('audioPlayButton');if(!a||!b)return;const special={'tama_minami/27':'file_27_change.mp3','tama_minami/33':'file_33_change.mp3','other/1':'file_1a.mp3','other/2':'file_2a.mp3','other/3':'fie_3a.mp3','other/4':'file_4a_rewrite.mp3','other/5':'file_5a.mp3'};const reset=()=>{a.pause();a.currentTime=0;b.textContent='▶';b.classList.remove('is-pause');b.classList.add('is-play');};const original=window.openPopup;window.openPopup=function(id){original(id);const s=SCULPTURES.find(x=>x.id===id),m=(s.story||'').match(/file\.?\s*(\d+)/i);if(!m)return;let n=s.audio||'../narration/'+folder+'/file_'+m[1]+'.mp3';if(special[folder+'/'+m[1]])n='../narration/'+folder+'/'+special[folder+'/'+m[1]];if(folder==='hachioji_kita'&&m[1]==='46')n='../narration/hachioji_kita/filer_46.mp3';reset();a.src=n;a.load();};b.onclick=async()=>{if(!a.src)return;if(a.paused){try{await a.play()}catch(e){console.error('音声の再生に失敗しました:',a.src,e)}}else a.pause()};a.onplay=()=>{b.textContent='Ⅱ';b.classList.remove('is-play');b.classList.add('is-pause')};a.onpause=()=>{if(!a.ended){b.textContent='▶';b.classList.remove('is-pause');b.classList.add('is-play')}};a.onended=reset;a.onerror=()=>console.error('音声ファイルを読み込めませんでした:',a.src);const close=window.closePopup;window.closePopup=function(){reset();close()}})();

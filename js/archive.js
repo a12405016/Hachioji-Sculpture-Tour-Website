@@ -3,12 +3,13 @@ localStorage.setItem('hachiojiStationUnlocked', 'true');
 // 彫刻データ
 const TOTAL_ITEMS = 11;
 const SCULPTURES = [
-    
-   
+
+
     // 必要に応じてNo.3以降のデータを追加してください
     {
         id: 1,
         name: "立つ女",
+        audio:"../narration/hachioji_station/file_1.mp3",
         image: "../images/archive-hachiojistation/3Standing Woman.png",
         area: "八王子駅エリア",
         author: "黒田 嘉治",
@@ -19,6 +20,7 @@ const SCULPTURES = [
     {
         id: 2,
         name: "風拓No.3",
+        audio:"../narration/hachioji_station/file_2.mp3",
         image: "../images/archive-hachiojistation/4Fuutaku.png",
         area: "八王子駅エリア",
         author: "大成 浩",
@@ -29,6 +31,7 @@ const SCULPTURES = [
     {
         id: 3,
         name: "箱の中",
+        audio:"../narration/hachioji_station/file_3.mp3",
         image: "../images/archive-hachiojistation/5Inside the Box.png",
         area: "八王子駅エリア",
         author: "増田 正和",
@@ -39,6 +42,7 @@ const SCULPTURES = [
     {
         id: 4,
         name: "空間の面",
+        audio:"../narration/hachioji_station/file_4.mp3",
         image: "../images/archive-hachiojistation/6Surface of Space.png",
         area: "八王子駅エリア",
         author: "秋山 礼巳",
@@ -49,6 +53,7 @@ const SCULPTURES = [
     {
         id: 5,
         name: "ひざし",
+        audio:"../narration/hachioji_station/file_5.mp3",
         image: "../images/archive-hachiojistation/7Sunlight.png",
         area: "八王子駅エリア",
         author: "高橋 洋",
@@ -59,6 +64,7 @@ const SCULPTURES = [
     {
         id: 6,
         name: "自然と時",
+        audio:"../narration/hachioji_station/file_6.mp3",
         image: "../images/archive-hachiojistation/8Nature and Time.png",
         area: "八王子駅エリア",
         author: "ヤネツ・レナーシィ（JANEZ LENASSI）",
@@ -66,9 +72,10 @@ const SCULPTURES = [
         link: "https://www.city.hachioji.tokyo.jp/kurashi/shimin/005/002/002/p000016.html",
         keyword: "しき"
     },
-     {
+    {
         id: 7,
         name: "若き日の母",
+        audio:"../narration/hachioji_station/file_7.mp3",
         image: "../images/archive-hachiojistation/2Mother in Her Youth.png",
         area: "八王子駅エリア",
         author: "北村 西望",
@@ -79,6 +86,7 @@ const SCULPTURES = [
     {
         id: 8,
         name: "将軍の孫",
+        audio:"../narration/hachioji_station/file_8.mp3",
         image: "../images/archive-hachiojistation/1Grandchild of the Shogun.png", // "  1Grandchild of the Shogun.png",
         area: "八王子駅エリア",
         author: "北村 西望",
@@ -89,6 +97,7 @@ const SCULPTURES = [
     {
         id: 9,
         name: "友の顔（達々）1.",
+        audio:"../narration/hachioji_station/file_9.mp3",
         image: "../images/archive-hachiojistation/9A Friend_s Face1.png",
         area: "八王子駅エリア",
         author: "酒井 良",
@@ -99,6 +108,7 @@ const SCULPTURES = [
     {
         id: 10,
         name: "和の角笛",
+        audio:"../narration/hachioji_station/file_10.mp3",
         image: "../images/archive-hachiojistation/10Japanese Horn.png",
         area: "八王子駅エリア",
         author: "井上 久照",
@@ -109,6 +119,7 @@ const SCULPTURES = [
     {
         id: 11,
         name: "四つの形",
+        audio:"../narration/hachioji_station/other_1.mp3",
         image: "../images/archive-hachiojistation/11Four Forms.png",
         area: "八王子駅エリア",
         author: "渡辺 隆根",
@@ -159,7 +170,12 @@ function openPopup(id) {
     const item = SCULPTURES.find(s => s.id === id);
     if (!item) return;
 
-    // 添付画像のデザインに沿ってデータを挿入
+    const audio = document.getElementById("popAudio");
+    const audioButton = document.getElementById("audioPlayButton");
+
+    audio.pause();
+    audio.currentTime = 0;
+
     document.getElementById("popNo").textContent = `No.${item.id}`;
     document.getElementById("popTitle").textContent = item.name;
     document.getElementById("popImg").src = item.image;
@@ -168,14 +184,86 @@ function openPopup(id) {
     document.getElementById("popStory").textContent = item.story;
     document.getElementById("popLink").href = item.link;
 
+    // 作品ごとの音声ファイル
+    if (item.audio) {
+    audio.src = item.audio;
+    audio.load();
+} else {
+    audio.removeAttribute("src");
+    audio.load();
+}
+
+
+audioButton.textContent = "▶";
+audioButton.classList.add("is-play");
+audioButton.classList.remove("is-pause");
+audioButton.setAttribute("aria-label", "音声ガイドを再生");
+
     document.getElementById("popupOverlay").classList.add("show");
     document.getElementById("popup").classList.add("show");
 }
 
 function closePopup() {
+    const audio = document.getElementById("popAudio");
+    audio.pause();
+    audio.currentTime = 0;
+
+    // ボタンを再生前の状態に戻す
+    const button = document.getElementById("audioPlayButton");
+    button.textContent = "▶";
+    button.classList.remove("is-pause");
+    button.classList.add("is-play");
+    button.setAttribute("aria-label", "音声ガイドを再生");
+
     document.getElementById("popupOverlay").classList.remove("show");
     document.getElementById("popup").classList.remove("show");
 }
+
+
+// 再生・一時停止ボタン
+document.getElementById("audioPlayButton").addEventListener("click", async () => {
+    const audio = document.getElementById("popAudio");
+    const button = document.getElementById("audioPlayButton");
+
+    if (audio.paused) {
+        try {
+            await audio.play();
+
+            button.textContent = "⏸";
+            button.classList.remove("is-play");
+            button.classList.add("is-pause");
+            button.setAttribute("aria-label", "音声ガイドを一時停止");
+        } catch (error) {
+            button.textContent = "⚠";
+            button.classList.remove("is-play", "is-pause");
+        }
+    } else {
+        audio.pause();
+
+        button.textContent = "▶";
+        button.classList.remove("is-pause");
+        button.classList.add("is-play");
+        button.setAttribute("aria-label", "音声ガイドを再生");
+    }
+});
+
+// 再生終了時に三角マークへ戻す
+document.getElementById("popAudio").addEventListener("ended", () => {
+    const button = document.getElementById("audioPlayButton");
+
+    button.textContent = "▶";
+    button.classList.remove("is-pause");
+    button.classList.add("is-play");
+    button.setAttribute("aria-label", "音声ガイドを再生");
+});
+
+
+// 再生終了時にボタンを元に戻す
+document.getElementById("popAudio").addEventListener("ended", () => {
+    const button = document.getElementById("audioPlayButton");
+    button.textContent = "▶";
+    button.setAttribute("aria-label", "音声ガイドを再生");
+});
 
 function renderGrid() {
     const grid = document.getElementById("grid");
