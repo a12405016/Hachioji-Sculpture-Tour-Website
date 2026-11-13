@@ -3,13 +3,13 @@
 
 <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J2H6LQZVP2"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GWF5V2S3PY"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', 'G-J2H6LQZVP2');
+        gtag('config', 'G-GWF5V2S3PY');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,10 +68,22 @@
     <div id="popup" class="popup-content">
         <button class="popup-close-x" onclick="closePopup()">✕</button>
 
-        <div class="popup-header">
-            <span id="popNo" class="popup-no">No.1</span>
-            <h3 id="popTitle" class="popup-title">将軍の孫</h3>
-        </div>
+
+<div class="popup-header">
+    <span id="popNo" class="popup-no">No.1</span>
+
+   <div class="popup-title-row">
+    <h2 id="popTitle" class="popup-title">将軍の孫</h2>
+
+    <button id="audioPlayButton"
+            type="button"
+            aria-label="音声を再生"
+            title="音声を再生">▶</button>
+            <span class="audio-credit" style="font-size: 13px;">©音読さん</span>
+</div>
+
+<audio id="popAudio" preload="none"></audio>
+</div>
 
         <div class="popup-img-wrapper">
             <img id="popImg" src="" alt="" class="popup-img">

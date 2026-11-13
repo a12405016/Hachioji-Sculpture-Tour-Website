@@ -498,3 +498,141 @@ article {
     left: 0;
     width: 100%;
 }
+/* 音声再生ボタンを丸いアイコンにする */
+#audioPlayButton {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+}
+
+#audioPlayButton:hover {
+    background-color: #555;
+}
+
+#audioPlayButton:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+/* 彫刻名と音声ボタンを横並びにする */
+.popup-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+    margin-top: 4px;
+}
+
+/* 彫刻名 */
+.popup-title-row .popup-title {
+    margin: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+/* 丸い音声再生アイコン */
+#audioPlayButton {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 50%;
+    background: #333;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+#audioPlayButton:hover {
+    background: #555;
+}
+
+#audioPlayButton:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.popup-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#audioPlayButton {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0 0 2px;
+    line-height: 1;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.audio-credit {
+    display: inline-flex;
+    align-items: center;
+    font-size: 13px;
+    line-height: 1;
+    white-space: nowrap;
+    align-self: center;
+    margin: 0;
+    text-align: left;
+}
+は削除してください。
+
+/* 音声ボタンの基本設定 */
+#audioPlayButton {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    border: none;
+    border-radius: 50%;
+    background: #333;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+}
+
+#audioPlayButton.is-play {
+    text-indent: 0px;
+    
+}
+
+#audioPlayButton.is-pause {
+    text-indent: -3px;
+}
+
+#audioPlayButton:hover {
+    background: #555;
+    transform: none;
+}

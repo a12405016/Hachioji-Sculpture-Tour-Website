@@ -498,3 +498,151 @@ article {
     left: 0;
     width: 100%;
 }
+/* 彫刻名と音声ボタンを横並びにする */
+.popup-title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+}
+
+.popup-title-row .popup-title {
+    margin: 0;
+}
+
+/* 音声ガイドボタン */
+.audio-play-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background: #0D8B80;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.audio-play-button:hover {
+    background: #0b7a70;
+}
+
+.audio-play-button:active {
+    transform: scale(0.97);
+}
+.popup-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.popup-title {
+    margin: 0;
+}
+
+.audio-play-button {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    border: none;
+    background: #333;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.audio-play-button.is-play {
+    text-indent: 2px;
+}
+
+.audio-play-button.is-pause {
+    text-indent: 0;
+    letter-spacing: -2px;
+}
+
+.audio-credit {
+    display: inline-flex;
+    font-size: 13px;
+    line-height: 1;
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* タイトル、再生ボタン、クレジットを常に同じ行に配置 */
+.popup-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+.popup-header .popup-title,
+.popup-header h2,
+.popup-header h3 {
+    min-width: 0;
+    margin: 0;
+}
+.popup-header > .popup-title-row {
+    width: auto !important;
+    flex: 0 1 auto !important;
+}
+.popup-header > .audio-credit {
+    flex: 0 0 auto !important;
+}
+.popup-title-row.audio-long-title {
+    gap: 6px !important;
+    flex-wrap: nowrap !important;
+}
+.popup-title-row.audio-long-title .popup-title {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 0.88em;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+/* 音声ボタン：ホバーしても色を変えない */
+.audio-play-button:hover {
+    background: #333 !important;
+    color: #fff !important;
+    opacity: 1 !important;
+}
+.popup-title-row {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.audio-control-group {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: flex-end !important;
+    justify-content: flex-start !important;
+    width: auto !important;
+    flex: 0 0 auto !important;
+    gap: 4px !important;
+    margin: 0 !important;
+}
+
+.audio-credit {
+    display: inline-block !important;
+    position: static !important;
+    width: auto !important;
+    align-self: center !important;
+    vertical-align: middle !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+    text-align: left !important;
+}

@@ -3,13 +3,13 @@
 
 <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J2H6LQZVP2"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GWF5V2S3PY"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', 'G-J2H6LQZVP2');
+        gtag('config', 'G-GWF5V2S3PY');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,8 +28,7 @@
 
         <article id="article0">
             <div class="collection-header">
-                <h2 class="collection-title">コレクション作品</h2>
-                <span class="collection-count" id="progressCount">0 / 9</span>
+                <h2 class="collection-title">コレクション作品</h2>                <span class="collection-count" id="progressCount">0 / 9</span>
             </div>
 
             <div class="progress-bar-container">
@@ -71,7 +70,7 @@
         <div class="popup-header">
             <span id="popNo" class="popup-no">No.1</span>
             <h3 id="popTitle" class="popup-title">将軍の孫</h3>
-        </div>
+        <button id="audioPlayButton" class="audio-play-button is-play" type="button" aria-label="音声を再生" title="音声を再生">▶</button><span class="audio-credit" style="font-size:13px">©音読さん</span><audio id="popAudio" preload="none"></audio></div>
 
         <div class="popup-img-wrapper">
             <img id="popImg" src="" alt="" class="popup-img">
@@ -108,6 +107,6 @@
     <!-- JavaScriptファイルの読み込み -->
     <script src="../js/common.js"></script>
     <script src="../js/minamiosawa.js"></script>
-</body>
+<script>(function(){const f={"北八王子エリア":"hachioji_kita","西八王子エリア":"hachioji_nishi","八王子市役所エリア":"hachioji_siyakusyo","片倉エリア":"katakura","北野エリア":"kitano","高尾エリア":"takao","多摩センターエリア":"tama_keiou","南大沢エリア":"tama_minami","その他エリア":"other"};const a=document.getElementById('popAudio'),b=document.getElementById('audioPlayButton'),o=window.openPopup;window.openPopup=function(id){o(id);const s=SCULPTURES.find(x=>x.id===id),m=(s.story||'').match(/file\.?\s*(\d+)/i);a.src=s.audio||(m&&f[s.area]?'../narration/'+f[s.area]+'/file_'+m[1]+'.mp3':'');a.load();a.pause();b.textContent='▶'};b.onclick=()=>a.src&&(a.paused?a.play():a.pause());a.onplay=()=>b.textContent='Ⅱ';a.onpause=()=>b.textContent='▶';a.onended=()=>{a.currentTime=0;b.textContent='▶'}})();</script></body>
 
 </html>

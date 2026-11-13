@@ -1,29 +1,94 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J2H6LQZVP2"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GWF5V2S3PY"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', 'G-J2H6LQZVP2');
+        gtag('config', 'G-GWF5V2S3PY');
     </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>八王子市役所エリア_八王子市彫刻巡りスタンプラリー</title>
     <meta name="robots" content="noindex">
+
     <link rel="icon" href="../images/herofavicon.png">
     <link rel="stylesheet" href="../css/common.css">
+
+    <!-- 音声ボタン用CSS -->
+    <style>
+        .popup-title-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .popup-title-row .popup-title {
+            margin: 0;
+        }
+
+        #audioPlayButton {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            min-height: 36px;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+
+            border: none;
+            border-radius: 50%;
+            background: #333;
+            color: #fff;
+            font-size: 14px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        #audioPlayButton:hover {
+            background: #555;
+        }
+
+        /* 再生マークの位置 */
+        #audioPlayButton.is-play {
+            text-indent: 2px;
+        }
+
+        /* 一時停止マークの位置 */
+        #audioPlayButton.is-pause {
+            text-indent: -2px;
+        }
+
+        .audio-credit {
+            font-size: 13px;
+            white-space: nowrap;
+            align-self: flex-end;
+            margin-bottom: 3px;
+        }
+    </style>
 </head>
 
 <body>
     <main>
         <header id="header0">
-            <h1><img src="../images/headericon.png" alt="八王子市彫刻巡りスタンプラリー"></h1>
+            <h1>
+                <img src="../images/headericon.png"
+                    alt="八王子市彫刻巡りスタンプラリー">
+            </h1>
         </header>
+
         <div class="area-banner">八王子市役所エリア</div>
 
         <article id="article0">
@@ -33,7 +98,8 @@
             </div>
 
             <div class="progress-bar-container">
-                <div class="progress-bar-fill" id="progressFill" style="width: 0%;"></div>
+                <div class="progress-bar-fill" id="progressFill"
+                    style="width: 0%;"></div>
             </div>
 
             <div class="stamp-grid" id="grid">
@@ -43,34 +109,56 @@
 
         <!-- ボタンエリア -->
         <div class="button-group">
-            <a href="https://www.city.hachioji.tokyo.jp/kurashi/shimin/005/002/002/p000018.html" target="_blank"
-                class="btn-outline">
-                <span class="btn-main-text">八王子市役所エリア<span class="arrow-icon">↗</span></span>
+            <a href="https://www.city.hachioji.tokyo.jp/kurashi/shimin/005/002/002/p000018.html"
+                target="_blank" rel="noopener noreferrer" class="btn-outline">
+                <span class="btn-main-text">
+                    八王子市役所エリア<span class="arrow-icon">↗</span>
+                </span>
                 <span class="btn-sub-text">外部サイトにアクセスします</span>
             </a>
 
             <a href="../index.html#archive" class="btn-outline">
-                <span class="btn-main-text">ホームページに戻る<span class="arrow-icon">↗</span></span>
+                <span class="btn-main-text">
+                    ホームページに戻る<span class="arrow-icon">↗</span>
+                </span>
             </a>
         </div>
     </main>
 
     <!-- 背景装飾 -->
     <div class="bg-decorations">
-        <img src="../images/header_gradation.png" alt="" class="decor-img header-grad">
+        <img src="../images/header_gradation.png"
+            alt="" class="decor-img header-grad">
     </div>
 
     <!-- トースト通知 -->
     <div id="toast" class="toast"></div>
 
-    <!-- ポップアップ（添付画像のデザインを再現） -->
-    <div id="popupOverlay" class="popup-overlay" onclick="closePopup()"></div>
+    <!-- ポップアップ背景 -->
+    <div id="popupOverlay" class="popup-overlay"
+        onclick="closePopup()"></div>
+
+    <!-- ポップアップ -->
     <div id="popup" class="popup-content">
-        <button class="popup-close-x" onclick="closePopup()">✕</button>
+        <button type="button" class="popup-close-x"
+            onclick="closePopup()">✕</button>
 
         <div class="popup-header">
             <span id="popNo" class="popup-no">No.1</span>
-            <h3 id="popTitle" class="popup-title">将軍の孫</h3>
+
+            <!-- 彫刻名・音声再生ボタン・音声クレジット -->
+            <div class="popup-title-row">
+                <h3 id="popTitle" class="popup-title">将軍の孫</h3>
+
+                <button type="button" id="audioPlayButton"
+                    class="is-play"
+                    aria-label="音声ガイドを再生">▶</button>
+
+                <span class="audio-credit">©音読さん</span>
+            </div>
+
+            <!-- 音声ガイド -->
+            <audio id="popAudio" preload="none"></audio>
         </div>
 
         <div class="popup-img-wrapper">
@@ -80,12 +168,18 @@
         <div class="popup-info">
             <div class="info-group">
                 <span class="info-label">エリア</span>
-                <div id="popArea" class="info-val">八王子市役所エリア</div>
+                <div id="popArea" class="info-val">
+                    八王子市役所エリア
+                </div>
             </div>
+
             <div class="info-group">
                 <span class="info-label">作者</span>
-                <div id="popAuthor" class="info-val">ここに作者名が入ります</div>
+                <div id="popAuthor" class="info-val">
+                    ここに作者名が入ります
+                </div>
             </div>
+
             <div class="info-group no-border">
                 <span class="info-label">架空のストーリー</span>
                 <div class="story-box">
@@ -95,19 +189,25 @@
         </div>
 
         <div class="button-group popup-buttons">
-            <a id="popLink" href="#" target="_blank" class="btn-outline">
-                <span class="btn-main-text">八王子市役所エリア<span class="arrow-icon">↗</span></span>
+            <a id="popLink" href="#" target="_blank"
+                rel="noopener noreferrer" class="btn-outline">
+                <span class="btn-main-text">
+                    八王子市役所エリア<span class="arrow-icon">↗</span>
+                </span>
                 <span class="btn-sub-text">外部サイトにアクセスします</span>
             </a>
-            <button class="btn-outline btn-close" onclick="closePopup()">
+
+            <button type="button" class="btn-outline btn-close"
+                onclick="closePopup()">
                 <span class="btn-main-text">閉じる</span>
             </button>
         </div>
     </div>
 
-    <!-- JavaScriptファイルの読み込み -->
+    <!-- JavaScriptファイル -->
     <script src="../js/common.js"></script>
     <script src="../js/hachiojisiyakusyo.js"></script>
 </body>
 
 </html>
+```
